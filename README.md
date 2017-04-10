@@ -23,8 +23,7 @@ which can parse markdown documents into AST.
 mdto = Mdto.define do |config|
     config.cache Rails.cache
 
-    config.use Mdto::Middlewares::CommonMark
-    config.use Mdto::Middlewares::AutoLink
+    config.use Mdto::Middlewares::CommonMark.new(tagfiler: true)
     config.use Mdto::Middlewares::SyntaxHighlight
 
     # use a custom middleware
@@ -40,10 +39,7 @@ html = mdto.process(markdown_content).apply(Mdto::Middlewares::StripScript).rend
 # render markdown as HTML ToC:
 html_toc = mdto.process(markdown_content).render_html_toc
 
-# render markdown as plain text with a custom renderer:
-text = mdto.process(markdown_content).render_text
-
-# extract links:
+# to extract metadata (e.g. links):
 links  = mdto.process(markdown_content).reduce([]) do |document, links|
     # document is a Nokogiri::HTML::Node
     links << extract_links(document)
