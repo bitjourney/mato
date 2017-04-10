@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-module Mdto
+module Mto
   module Renderers
-    module HtmlTocRenderer
+    module HtmlRenderer
       # @param [Nokogiri::XML::Node] node
       # @return [String]
-      def self.call(_node)
-        raise 'TODO'
+      def self.call(node)
+        node.to_html
       end
     end
   end

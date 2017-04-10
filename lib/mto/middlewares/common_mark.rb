@@ -3,10 +3,10 @@
 # CommonMarker, a Ruby interface to cmark-gfm (https://github.com/github/cmark)
 require 'commonmarker'
 
-module Mdto
+module Mto
   module Middlewares
     class CommonMark
-      include Mdto::Middleware
+      include Mto::Middleware
 
       input String
       output CommonMarker::Node

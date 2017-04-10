@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module Mdto
+module Mto
   module Middlewares
     class TokenLink
-      include Mdto::Middleware
+      include Mto::Middleware
 
       input Nokogiri::XML::Node
       output Nokogiri::XML::Node

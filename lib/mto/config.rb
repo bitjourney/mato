@@ -2,9 +2,9 @@
 
 require_relative './validation_error'
 
-module Mdto
+module Mto
   class Config
-    # @return [Array<Mdto::Middleware>]
+    # @return [Array<Mto::Middleware>]
     attr_reader :middlewares
 
     def initialize
@@ -23,7 +23,7 @@ module Mdto
       end
     end
 
-    # @param [Class<Mdto::Middleware>] middleware
+    # @param [Class<Mto::Middleware>] middleware
     def use(middleware)
       if middlewares.any?
         previous = middlewares.last

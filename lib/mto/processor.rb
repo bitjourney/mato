@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Mdto
+module Mto
   class Processor
-    # @return [Mdto::Config]
+    # @return [Mto::Config]
     attr_reader :config
 
     def initialize(config)
@@ -10,12 +10,12 @@ module Mdto
     end
 
     # @param [String] input
-    # @return [Mdto::Document]
+    # @return [Mto::Document]
     def process(input)
       node = config.middlewares.reduce(input) do |content, middleware|
         middleware.call(content)
       end
-      Mdto::Document.new(config, node)
+      Mto::Document.new(config, node)
     end
   end
 end

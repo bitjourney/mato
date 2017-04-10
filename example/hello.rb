@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'mdto'
+require 'mto'
 
-mdto = Mdto.define do |config|
-  config.use Mdto::Middlewares::CommonMark
-  config.use Mdto::Middlewares::ToHtmlNode
-  config.use Mdto::Middlewares::TokenLink.new(Mdto::Middlewares::TokenLink::MENTION) { |mention|
+mto = Mto.define do |config|
+  config.use Mto::Middlewares::CommonMark
+  config.use Mto::Middlewares::ToHtmlNode
+  config.use Mto::Middlewares::TokenLink.new(Mto::Middlewares::TokenLink::MENTION) { |mention|
     "<a href='https://twitter.com/#{mention}' class='mention'>#{mention}</a>"
   }
 end
 
-puts mdto.process(<<~'MARKDOWN').render_html
-  # Hello, @mdto!
+puts mto.process(<<~'MARKDOWN').render_html
+  # Hello, @mto!
 
   https://twitter.com/@kibe_la
 

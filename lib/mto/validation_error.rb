@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Mdto
+module Mto
   class ValidationError < StandardError
   end
 end
