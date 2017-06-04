@@ -5,7 +5,6 @@ require 'nokogiri'
 
 module Mato
   class HtmlProcessor
-
     # @param [CommonMarker::Node] markdown_node
     # @return [Nokogiri;:XML::Node]
     def call(markdown_node, _context = nil)

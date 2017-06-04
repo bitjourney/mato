@@ -4,7 +4,6 @@ require 'mato'
 
 # User class that mocks ActiveRecord's
 class User < Struct.new(:account)
-
   VALID_ACCOUNTS = %w(mato)
 
   # @return [Enumerable<User>]
@@ -16,15 +15,15 @@ class User < Struct.new(:account)
 end
 
 mato = Mato.define do |config|
-  config.append_text_filter -> (text, _context) {
+  config.append_text_filter ->(text, _context) {
     # weave text
   }
 
-  config.append_markdown_filter -> (doc, _context) {
+  config.append_markdown_filter ->(doc, _context) {
     # weave doc
   }
 
-  config.append_html_filter -> (doc, _context) {
+  config.append_html_filter ->(doc, _context) {
     # weave doc
   }
   config.append_html_filter(Mato::HtmlFilters::MentionLink.new do |mention_candidate_map|

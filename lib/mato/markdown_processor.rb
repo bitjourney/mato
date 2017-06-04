@@ -5,7 +5,6 @@ require 'commonmarker'
 
 module Mato
   class MarkdownProcessor
-
     attr_reader :extensions, :options
 
     # see https://github.com/github/cmark/tree/master/extensions

@@ -3,9 +3,7 @@
 require_relative '../test_helper'
 
 class MentionLinkTest < Minitest::Test
-
   class User < Struct.new(:account)
-
     VALID_ACCOUNTS = %w(valid)
 
     # @return [Enumerable<User>]
@@ -27,7 +25,6 @@ class MentionLinkTest < Minitest::Test
           end
         end
       end)
-
     end
   end
 

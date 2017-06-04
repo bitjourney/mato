@@ -7,7 +7,6 @@ require_relative './renderers/html_toc_renderer'
 # Intermediate Document
 module Mato
   class Document
-
     attr_reader :node
     attr_reader :context
 

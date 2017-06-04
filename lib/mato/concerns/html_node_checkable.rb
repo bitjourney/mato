@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mato
   module Concerns
     module HtmlNodeCheckable

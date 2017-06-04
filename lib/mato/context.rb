@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mato
   class Context
     attr_reader :config

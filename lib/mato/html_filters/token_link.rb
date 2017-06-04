@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../concerns/html_node_checkable'
 
 module Mato

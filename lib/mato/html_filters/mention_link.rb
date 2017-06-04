@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../concerns/html_node_checkable'
 
 module Mato
@@ -11,7 +13,7 @@ module Mato
       # @return [Proc]
       attr_reader :link_builder
 
-      MENTION_PATTERN = %r{\@[a-zA-Z0-9_]+\b} # e.g. @foo
+      MENTION_PATTERN = /\@[a-zA-Z0-9_]+\b/ # e.g. @foo
 
       # @param [Regexp] pattern
       # @param [Proc] finder

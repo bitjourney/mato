@@ -3,7 +3,6 @@
 require_relative('./context')
 require_relative('./document')
 
-
 module Mato
   class Processor
     # @return [Mato::Config]
