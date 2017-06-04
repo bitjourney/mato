@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require_relative('./text_filter')
-require_relative('./markdown_filter')
-require_relative('./html_filter')
-
 require_relative('./markdown_processor')
 require_relative('./html_processor')
 
@@ -12,13 +8,13 @@ require_relative('./document')
 
 module Mato
   class Config
-    # @return [Array<Mato::TextFilter>]
+    # @return [Array<Proc>]
     attr_reader :text_filters
 
-    # @return [Array<Mato::MarkdownFilter>]
+    # @return [Array<Proc>]
     attr_reader :markdown_filters
 
-    # @return [Array<Mato::HtmlFilter>]
+    # @return [Array<Proc>]
     attr_reader :html_filters
 
     # @return [Mato::MarkdownProcessor]

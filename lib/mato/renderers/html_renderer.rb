@@ -2,10 +2,10 @@
 
 module Mato
   module Renderers
-    module HtmlRenderer
+    class HtmlRenderer
       # @param [Nokogiri::XML::Node] node
       # @return [String]
-      def self.call(node, _context = nil)
+      def call(node, _context = nil)
         node.to_html
       end
     end
