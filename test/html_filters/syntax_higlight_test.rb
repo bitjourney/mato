@@ -2,7 +2,7 @@
 
 require_relative '../test_helper'
 
-class MentionLinkTest < Minitest::Test
+class SyntaxHighlightTest < Minitest::Test
   def subject
     @subject ||= Mato::HtmlFilters::SyntaxHighlight.new
   end

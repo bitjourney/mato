@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require_relative './renderers/html_renderer'
+require_relative './renderers/html_toc_renderer'
 
 # Intermediate Document
 module Mato
@@ -18,6 +19,10 @@ module Mato
 
     def render_html
       Mato::Renderers::HtmlRenderer.new.call(@node, @context)
+    end
+
+    def render_html_toc
+      Mato::Renderers::HtmlTocRenderer.new.call(@node, @context)
     end
   end
 end

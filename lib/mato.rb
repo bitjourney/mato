@@ -13,6 +13,7 @@ require_relative "./mato/html_filters/syntax_highlight"
 module Mato
   # @param [Proc] block
   # @yieldparam [Mato::Config] config
+  # @return [Mato::Processor]
   def self.define(&block)
     config = Mato::Config.new
     config.configure(&block)
