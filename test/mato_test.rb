@@ -8,9 +8,7 @@ class MatoTest < Minitest::Test
   end
 
   def test_it_does_something_useful
-    mato = Mato.define do |config|
-      config.use Mato::Middlewares::CommonMark.new
-      config.use Mato::Middlewares::ToHtmlNode
+    mato = Mato.define do |_config|
     end
 
     assert { mato.process('Hello, world!').render_html == "<p>Hello, world!</p>\n" }

@@ -5,7 +5,7 @@ module Mato
     module HtmlRenderer
       # @param [Nokogiri::XML::Node] node
       # @return [String]
-      def self.call(node)
+      def self.call(node, _context = nil)
         node.to_html
       end
     end

@@ -1,12 +1,6 @@
-# frozen_string_literal: true
-
 module Mato
-  module Middlewares
+  module HtmlFilters
     class TokenLink
-      include Mato::Middleware
-
-      input Nokogiri::XML::Node
-      output Nokogiri::XML::Node
 
       # @return [Regexp]
       attr_reader :pattern
@@ -23,13 +17,11 @@ module Mato
       end
 
       # @param [Nokogiri::XML::Node] node
-      # @return [Nokogiri::XML::Node]
-      def call(node)
+      def call(node, _context = nil)
         node.xpath('.//text()').each do |text_node|
           next if has_ancestor?(text_node, 'a', 'code')
           text_node.replace(text_node.content.gsub(pattern, &builder))
         end
-        node
       end
 
       # @param [Nokogiri::XML::Node] node

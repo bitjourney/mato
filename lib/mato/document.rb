@@ -9,20 +9,21 @@ module Mato
   class Document
 
     attr_reader :node
+    attr_reader :context
 
-    # @param [Mato::Config] config
     # @param [Nokogiri::XML::Node] node
-    def initialize(config, node)
-      @config = config
-      @node = node
+    # @param [Mato::Context] context
+    def initialize(html_node, context)
+      @node = html_node
+      @context = context
     end
 
     def render_html
-      Mato::Renderers::HtmlRenderer.call(@node)
+      Mato::Renderers::HtmlRenderer.call(@node, @context)
     end
 
     def render_html_toc
-      Mato::Renderers::HtmlTocRenderer.call(@node)
+      Mato::Renderers::HtmlTocRenderer.call(@node, @context)
     end
   end
 end

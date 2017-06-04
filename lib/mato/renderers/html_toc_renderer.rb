@@ -5,7 +5,7 @@ module Mato
     module HtmlTocRenderer
       # @param [Nokogiri::XML::Node] node
       # @return [String]
-      def self.call(_node)
+      def self.call(_node, _context = nil)
         raise 'TODO'
       end
     end
