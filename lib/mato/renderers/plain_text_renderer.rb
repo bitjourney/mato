@@ -2,11 +2,11 @@
 
 module Mato
   module Renderers
-    module HtmlTocRenderer
+    module PlainTextRenderer
       # @param [Nokogiri::XML::Node] node
       # @return [String]
       def self.call(_node, _context = nil)
-        raise 'TODO'
+        raise "TODO"
       end
     end
   end
