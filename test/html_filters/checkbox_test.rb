@@ -10,15 +10,14 @@ class CheckboxTest < Minitest::Test
   end
 
   def test_simle
-    assert do
-      input = <<~'HTML'
+    input = <<~'MARKDOWN'
         * [ ] foo
         * [x] bar
         * baz
         *
-      HTML
+    MARKDOWN
 
-      output = <<~'HTML'
+    output = <<~'HTML'
         <ul>
         <li class="task-list-item">
         <input type="checkbox" class="task-list-item-checkbox" disabled>foo</li>
@@ -27,9 +26,8 @@ class CheckboxTest < Minitest::Test
         <li>baz</li>
         <li>
         </ul>
-      HTML
+    HTML
 
-      mato.process(input).render_html == output
-    end
+    assert_html_eq(mato.process(input).render_html, output)
   end
 end

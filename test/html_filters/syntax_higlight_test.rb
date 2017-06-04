@@ -29,14 +29,18 @@ class SyntaxHighlightTest < Minitest::Test
   end
 
   def test_call
-    assert do
-      markdown = <<~'MD'
-        ```ruby
-        p "Hello, world!"
-        ````
-      MD
+    markdown = <<~'MD'
+      ```ruby
+      p "Hello, world!"
+      ````
+    MD
 
-      highlight(markdown) == %{<div class="code-frame">\n<div class="code-label">language-ruby</div>\n<pre class="highlight"><code data-lang="plaintext">p "Hello, world!"\n</code></pre>\n</div>\n}
-    end
+    assert_html_eq(highlight(markdown), <<~'HTML')
+      <div class="code-frame">
+      <div class="code-label">language-ruby</div>
+      <pre class="highlight"><code data-lang="plaintext">p "Hello, world!"
+      </code></pre>
+      </div>
+    HTML
   end
 end
