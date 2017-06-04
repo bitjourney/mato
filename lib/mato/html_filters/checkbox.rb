@@ -57,8 +57,8 @@ module Mato
         Nokogiri::HTML.fragment('<input type="checkbox"/>').tap do |fragment|
           checkbox = fragment.children.first
           checkbox["class"] = @checkbox_class
-          checkbox["disabled"] = true
-          checkbox["checked"] = checked
+          checkbox["disabled"] = 'disabled'
+          checkbox["checked"] = 'checked' if checked
         end
       end
     end

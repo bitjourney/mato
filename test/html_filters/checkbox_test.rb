@@ -21,7 +21,7 @@ class CheckboxTest < Minitest::Test
       output = <<~'HTML'
         <ul>
         <li class="task-list-item">
-        <input type="checkbox" class="task-list-item-checkbox" disabled checked>foo</li>
+        <input type="checkbox" class="task-list-item-checkbox" disabled>foo</li>
         <li class="task-list-item">
         <input type="checkbox" class="task-list-item-checkbox" disabled checked>bar</li>
         <li>baz</li>
