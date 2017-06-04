@@ -1,8 +1,8 @@
-# Mto - Markdown Processing Toolkit
+# Mato - Markdown weaving Toolkit
 
-**Mto** is an extensible markdown-based content processing toolkit, inspired in [HTML::Pipeline](https://github.com/jch/html-pipeline).
+**Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible markdown-based content processing toolkit, inspired in [HTML::Pipeline](https://github.com/jch/html-pipeline).
 
-The `Mto` library converts markdown texts into some other format like HTML, as the following processes:
+The `Mato` library converts markdown texts into some other format like HTML, as the following processes:
 
 *  Plain-text filtes processes the input source markdown text
 * A markdown processor translates a markdown content into CommonMark AST (sometimes called "Markdown Document")
@@ -20,27 +20,27 @@ which can parse markdown documents into AST.
 
 ```ruby
 # markdown to html:
-mto = mto.define do |config|
+mato = mato.define do |config|
     config.cache Rails.cache
 
-    config.use Mto::Middlewares::CommonMark.new(tagfiler: true)
-    config.use Mto::Middlewares::SyntaxHighlight
+    config.use Mato::Middlewares::CommonMark.new(tagfiler: true)
+    config.use Mato::Middlewares::SyntaxHighlight
 
     # use a custom middleware
     config.use MyApp::SomethingGreat
 end
 
 # render markdown as HTML:
-html = mto.process(markdown_content).render_html
+html = mato.process(markdown_content).render_html
 
-# same as the above, applying an extra middleware Mto::Middlewares::StripScript
-html = mto.process(markdown_content).apply(Mto::Middlewares::StripScript).render_html
+# same as the above, applying an extra middleware Mato::Middlewares::StripScript
+html = mato.process(markdown_content).apply(Mato::Middlewares::StripScript).render_html
 
 # render markdown as HTML ToC:
-html_toc = mto.process(markdown_content).render_html_toc
+html_toc = mato.process(markdown_content).render_html_toc
 
 # to extract metadata (e.g. links):
-links  = mto.process(markdown_content).reduce([]) do |document, links|
+links  = mato.process(markdown_content).reduce([]) do |document, links|
     # document is a Nokogiri::HTML::Node
     links << extract_links(document)
 end
@@ -52,7 +52,7 @@ end
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'mto'
+gem 'mato'
 ```
 
 And then execute:
@@ -61,7 +61,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install mto
+    $ gem install mato
 
 ## Usage
 
@@ -75,7 +75,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/bitjourney/mto.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bitjourney/mato.
 
 
 ## License

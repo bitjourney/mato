@@ -3,10 +3,10 @@
 require 'commonmarker'
 require 'nokogiri'
 
-module Mto
+module Mato
   module Middlewares
     class ToHtmlNode
-      include Mto::Middleware
+      include Mato::Middleware
 
       input CommonMarker::Node
       output Nokogiri::XML::Node

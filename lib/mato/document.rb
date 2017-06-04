@@ -5,12 +5,12 @@ require_relative './renderers/html_renderer'
 require_relative './renderers/html_toc_renderer'
 
 # Intermediate Document
-module Mto
+module Mato
   class Document
 
     attr_reader :node
 
-    # @param [Mto::Config] config
+    # @param [Mato::Config] config
     # @param [Nokogiri::XML::Node] node
     def initialize(config, node)
       @config = config
@@ -18,11 +18,11 @@ module Mto
     end
 
     def render_html
-      Mto::Renderers::HtmlRenderer.call(@node)
+      Mato::Renderers::HtmlRenderer.call(@node)
     end
 
     def render_html_toc
-      Mto::Renderers::HtmlTocRenderer.call(@node)
+      Mato::Renderers::HtmlTocRenderer.call(@node)
     end
   end
 end

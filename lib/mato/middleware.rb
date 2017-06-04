@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Mto
+module Mato
   module Middleware
     def self.included(target)
       target.instance_eval do

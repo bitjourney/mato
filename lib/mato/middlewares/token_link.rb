@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module Mto
+module Mato
   module Middlewares
     class TokenLink
-      include Mto::Middleware
+      include Mato::Middleware
 
       input Nokogiri::XML::Node
       output Nokogiri::XML::Node

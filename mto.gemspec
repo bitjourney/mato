@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative './lib/mto/version'
+require_relative './lib/mato/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "mto"
-  spec.version       = Mto::VERSION
+  spec.name          = "mato"
+  spec.version       = Mato::VERSION
   spec.authors       = ["FUJI Goro"]
   spec.email         = ["goro-fuj@bitjoureny.com"]
 
-  spec.summary       = 'Markdown Processing Toolkit'
+  spec.summary       = 'MArkdown TOolkit'
   spec.description   = 'An extensible markdown processing toolkit based on CommonMark'
-  spec.homepage      = "https://github.com/bitjourney/mto"
+  spec.homepage      = "https://github.com/bitjourney/mato"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|

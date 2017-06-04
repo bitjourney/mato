@@ -2,9 +2,9 @@
 
 require_relative './validation_error'
 
-module Mto
+module Mato
   class Config
-    # @return [Array<Mto::Middleware>]
+    # @return [Array<Mato::Middleware>]
     attr_reader :middlewares
 
     def initialize
@@ -23,7 +23,7 @@ module Mto
       end
     end
 
-    # @param [Class<Mto::Middleware>] middleware
+    # @param [Class<Mato::Middleware>] middleware
     def use(middleware)
       if middlewares.any?
         previous = middlewares.last

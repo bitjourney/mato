@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Mto
+module Mato
   module Renderers
     module HtmlTocRenderer
       # @param [Nokogiri::XML::Node] node

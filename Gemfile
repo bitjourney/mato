@@ -2,5 +2,5 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in mto.gemspec
+# Specify your gem's dependencies in mato.gemspec
 gemspec

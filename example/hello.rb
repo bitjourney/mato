@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'mto'
+require 'mato'
 
-mto = Mto.define do |config|
-  config.use Mto::Middlewares::CommonMark
-  config.use Mto::Middlewares::ToHtmlNode
-  config.use Mto::Middlewares::TokenLink.new(Mto::Middlewares::TokenLink::MENTION) { |mention|
+mato = Mato.define do |config|
+  config.use Mato::Middlewares::CommonMark
+  config.use Mato::Middlewares::ToHtmlNode
+  config.use Mato::Middlewares::TokenLink.new(Mato::Middlewares::TokenLink::MENTION) { |mention|
     "<a href='https://twitter.com/#{mention}' class='mention'>#{mention}</a>"
   }
 end
 
-puts mto.process(<<~'MARKDOWN').render_html
-  # Hello, @mto!
+puts mato.process(<<~'MARKDOWN').render_html
+  # Hello, @mato!
 
   https://twitter.com/@kibe_la
 

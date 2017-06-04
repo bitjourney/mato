@@ -2,7 +2,7 @@
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
-require 'mto'
+require 'mato'
 
 require 'minitest/autorun'
 require 'minitest/power_assert'

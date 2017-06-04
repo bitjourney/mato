@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Mto
+module Mato
   class Processor
-    # @return [Mto::Config]
+    # @return [Mato::Config]
     attr_reader :config
 
     def initialize(config)
@@ -10,12 +10,12 @@ module Mto
     end
 
     # @param [String] input
-    # @return [Mto::Document]
+    # @return [Mato::Document]
     def process(input)
       node = config.middlewares.reduce(input) do |content, middleware|
         middleware.call(content)
       end
-      Mto::Document.new(config, node)
+      Mato::Document.new(config, node)
     end
   end
 end
