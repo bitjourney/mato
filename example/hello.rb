@@ -3,7 +3,8 @@
 require 'mato'
 
 # User class that mocks ActiveRecord's
-class User < Struct.new(:account)
+User = Struct.new(:account)
+class User
   VALID_ACCOUNTS = %w(mato)
 
   # @return [Enumerable<User>]
@@ -26,12 +27,13 @@ mato = Mato.define do |config|
   config.append_html_filter ->(doc, _context) {
     # weave doc
   }
+
   config.append_html_filter(Mato::HtmlFilters::Checkbox.new)
   config.append_html_filter(Mato::HtmlFilters::MentionLink.new do |mention_candidate_map|
     candidate_accounts = mention_candidate_map.keys.map { |name| name.gsub(/^\@/, '') }
     User.where(account: candidate_accounts).each do |user|
-      mention = user.account
-      mention_candidate_map["@#{mention}"].each do |node|
+      mention = "@#{user.account}"
+      mention_candidate_map[mention].each do |node|
         node.replace("<a href='https://twitter.com/#{mention}' class='mention'>#{mention}</a>")
       end
     end
