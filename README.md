@@ -1,13 +1,13 @@
-# Mato - Markdown weaving Toolkit
+# Mato - Markdown Processing Toolkit
 
-**Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible markdown-based content processing toolkit, inspired in [HTML::Pipeline](https://github.com/jch/html-pipeline).
+**Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible markdown-based content processing toolkit, inspired by [HTML::Pipeline](https://github.com/jch/html-pipeline).
 
 The `Mato` library converts markdown texts into some other format like HTML, as the following processes:
 
 *  Plain-text filtes processes the input source markdown text
-* A markdown processor translates a markdown content into CommonMark AST (sometimes called "Markdown Document")
-* CommonMark AST filters processes the AST
-* A markdown renderer renders AST into a HTML node (i.e.`Nokogiri::XML::Node`)
+* A markdown processor translates a markdown content into CommonMark Node (sometimes called "Markdown Document")
+* CommonMark Node filters processes the node
+* A markdown renderer renders the markdown node into a HTML node (i.e.`Nokogiri::XML::Node`)
 * HTML filters processes the HTML node
 * A formatter converts the HTML node into an HTML representation, plain text, and so on
 
