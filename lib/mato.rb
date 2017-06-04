@@ -8,6 +8,7 @@ require_relative "./mato/processor"
 # filter classes
 require_relative "./mato/html_filters/token_link"
 require_relative "./mato/html_filters/mention_link"
+require_relative "./mato/html_filters/syntax_highlight"
 
 module Mato
   # @param [Proc] block
