@@ -18,9 +18,7 @@ module Mato
         anchor_builder = AnchorBuilder.new(@anchor_icon_element)
 
         node.css(HX_PATTERN).each do |hx|
-          content = hx.children.clone
-          hx.replace(anchor_builder.make_anchor_element(hx))
-          hx.add_child(content)
+          hx.children = anchor_builder.make_anchor_element(hx) + hx.children.to_html
         end
       end
     end

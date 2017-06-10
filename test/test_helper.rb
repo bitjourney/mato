@@ -11,13 +11,13 @@ class MyTest < MiniTest::Test
   def assert_html_eq(actual, expected)
     if actual != expected
       s = +""
-      s << "expected:\n#{expected}"
+      s << "expected:\n#{expected}\n"
       s << "-----------------"
-      s << "got:\n#{actual}"
+      s << "got:\n#{actual}\n"
       s << "-----------------"
       s << "diff:\n#{diff(expected, actual)}"
       s << "-----------------"
-      flunk
+      flunk s
     end
   end
 end

@@ -10,6 +10,7 @@ require_relative "./mato/html_filters/token_link"
 require_relative "./mato/html_filters/mention_link"
 require_relative "./mato/html_filters/syntax_highlight"
 require_relative "./mato/html_filters/checkbox"
+require_relative "./mato/html_filters/section_anchor"
 
 module Mato
   # @param [Proc] block
