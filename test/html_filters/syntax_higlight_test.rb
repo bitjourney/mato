@@ -28,7 +28,7 @@ class SyntaxHighlightTest < Minitest::Test
     assert { subject.parse_label('Gemfile') == { filename: 'Gemfile' } }
   end
 
-  def test_call
+  def test_call_with_lang
     markdown = <<~'MD'
       ```ruby
       p "Hello, world!"
@@ -37,8 +37,40 @@ class SyntaxHighlightTest < Minitest::Test
 
     assert_html_eq(highlight(markdown), <<~'HTML')
       <div class="code-frame">
-      <div class="code-label">language-ruby</div>
-      <pre class="highlight"><code data-lang="plaintext">p "Hello, world!"
+      <div class="code-label">ruby</div>
+      <pre class="highlight"><code data-lang="ruby"><span class="nb">p</span> <span class="s2">"Hello, world!"</span>
+      </code></pre>
+      </div>
+    HTML
+  end
+
+  def test_call_with_filename
+    markdown = <<~'MD'
+      ```foo.rb
+      p "Hello, world!"
+      ````
+    MD
+
+    assert_html_eq(highlight(markdown), <<~'HTML')
+      <div class="code-frame">
+      <div class="code-label">foo.rb</div>
+      <pre class="highlight"><code data-lang="ruby"><span class="nb">p</span> <span class="s2">"Hello, world!"</span>
+      </code></pre>
+      </div>
+    HTML
+  end
+
+  def test_call_with_lang_filname_pair
+    markdown = <<~'MD'
+      ```ruby:foo.rb
+      p "Hello, world!"
+      ````
+    MD
+
+    assert_html_eq(highlight(markdown), <<~'HTML')
+      <div class="code-frame">
+      <div class="code-label">foo.rb</div>
+      <pre class="highlight"><code data-lang="ruby"><span class="nb">p</span> <span class="s2">"Hello, world!"</span>
       </code></pre>
       </div>
     HTML

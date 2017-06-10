@@ -5,6 +5,7 @@ require 'rouge'
 module Mato
   module HtmlFilters
     class SyntaxHighlight
+
       def call(node, _context)
         node.search("pre").each do |pre|
           if pre.at('code')
@@ -13,6 +14,10 @@ module Mato
         end
       end
 
+      # @param [String] language
+      # @param [String] filename
+      # @param [String] source
+      # @return [Rouge::Lexer]
       def guess_lexer(language, filename, source)
         Rouge::Lexer.find(language)&.tap do |lexer|
           return lexer.new
@@ -33,10 +38,11 @@ module Mato
         if a.empty?
           {}
         elsif a.size == 1
-          if Rouge::Lexer.find(a[0])
-            { language: a[0] }
+          token = a[0].sub(/^language-/, '')
+          if Rouge::Lexer.find(token)
+            { language: token }
           else
-            { filename: a[0] }
+            { filename: token }
           end
         else
           { language: a[0], filename: a[1] }
@@ -59,7 +65,7 @@ module Mato
         document = Nokogiri::HTML.fragment(%{<div class="code-frame"/>})
 
         div = document.at('div')
-        div.add_child(label_fragment(filename || lexer.title)) if filename || !lexer.is_a?(::Rouge::Lexers::PlainText)
+        div.add_child(label_fragment(filename || language || lexer.title)) if filename || !lexer.is_a?(::Rouge::Lexers::PlainText)
         div.add_child(%{<pre class="highlight"><code data-lang="#{lexer.tag}">#{format(lexer, source)}</code></pre>})
 
         document

@@ -1,13 +1,24 @@
+# See also https://github.com/onk/onkcop/blob/master/config/rubocop.yml
+
 AllCops:
   TargetRubyVersion: 2.3
   DisplayCopNames: true
   Exclude:
-    - bin/**
+    - bin/**/*
 
 Lint/UnusedBlockArgument:
   Enabled: false
 
 Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Lint/ScriptPermission:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
 Metrics/AbcSize:
@@ -33,15 +44,6 @@ Metrics/ModuleLength:
 
 Metrics/ParameterLists:
   Enabled: false
-
-Rails:
-  Enabled: true
-
-Rails/OutputSafety:
-  Enabled: false
-
-Rails/TimeZone:
-  Enabled: true
 
 Style/BlockDelimiters:
   Enabled: false
@@ -113,6 +115,21 @@ Style/VariableNumber:
   Enabled: false
 
 Style/PredicateName:
+  Enabled: false
+
+Style/AccessorMethodName:
+  Enabled: false
+
+Style/YodaCondition:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/MultipleComparison:
+  Enabled: false
+
+Style/StructInheritance:
   Enabled: false
 
 Performance/RedundantBlockCall:
