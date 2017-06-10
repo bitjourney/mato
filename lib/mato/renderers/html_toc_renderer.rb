@@ -8,14 +8,12 @@ module Mato
 
       H_SELECTOR = %w(h1 h2 h3 h4 h5 h6).join(',')
 
-      def initialize(verbose: true, anchor_icon_element: AnchorBuilder::DEFAULT_ANCHOR_ICON_ELEMENT)
+      def initialize(verbose: true)
         @verbose = verbose
-        @anchor_icon_element = anchor_icon_element
       end
 
       # @param [Nokogiri::XML::Node] node
       def call(node, _context = nil)
-        anchor_builder = @anchor_icon_element ? AnchorBuilder.new(@anchor_icon_element) : nil
         s = +''
 
         stack = [0]
@@ -32,8 +30,17 @@ module Mato
             end
           end
 
-          if anchor_builder
-            s << %{<li><a href="##{anchor_builder.make_anchor_id(hx)}">#{hx.children}</a>}
+          first_child = hx.child
+          if first_child.name == 'a' && first_child['class'] == AnchorBuilder::CSS_CLASS_NAME
+            s << %{<li><a href="##{first_child['id']}">}
+
+            child = first_child.next_sibling
+            while child
+              s << child.to_html
+              child = child.next_sibling
+            end
+
+            s << %{</a>}
           else
             s << %{<li>#{hx.children}}
           end
@@ -43,6 +50,7 @@ module Mato
           stack.pop
           s << %{</li></ul>\n}
         end
+
         s
       end
 

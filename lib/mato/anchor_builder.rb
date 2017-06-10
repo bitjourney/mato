@@ -9,6 +9,8 @@ module Mato
     # specify it as "<span aria-hidden=\"true\" class=\"octicon octicon-link\"></span>" if you use octicon
     DEFAULT_ANCHOR_ICON_ELEMENT = %q{<i class="fa fa-link"></i>}
 
+    CSS_CLASS_NAME = "anchor"
+
     attr_reader :anchor_icon_element
     attr_reader :context
 
@@ -20,7 +22,7 @@ module Mato
     # @param [Nokogiri::XML::Node] hx
     def make_anchor_element(hx)
       id = make_anchor_id(hx)
-      %{<a id="#{id}" href="##{id}" aria-hidden="true">#{anchor_icon_element}</a>}
+      %{<a id="#{id}" href="##{id}" aria-hidden="true" class="#{CSS_CLASS_NAME}">#{anchor_icon_element}</a>}
     end
 
     def make_anchor_id(hx)

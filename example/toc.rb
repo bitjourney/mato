@@ -2,7 +2,8 @@
 
 require 'mato'
 
-mato = Mato.define do |_config|
+mato = Mato.define do |config|
+  config.append_html_filter(Mato::HtmlFilters::SectionAnchor.new)
 end
 
 puts mato.process(<<~'MARKDOWN').render_html_toc

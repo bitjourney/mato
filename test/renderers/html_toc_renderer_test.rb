@@ -6,7 +6,7 @@ class HtmlTocRendererTest < MyTest
 
   # @return [Mato::Renderers::HtmlTocRenderer]
   def subject
-    @subject ||= Mato::Renderers::HtmlTocRenderer.new(anchor_icon_element: nil)
+    @subject ||= Mato::Renderers::HtmlTocRenderer.new
   end
 
   def test_simple
@@ -30,7 +30,10 @@ class HtmlTocRendererTest < MyTest
   end
 
   def test_with_anchor
-    subject = Mato::Renderers::HtmlTocRenderer.new
+    mato = Mato.define do |config|
+      config.append_html_filter(Mato::HtmlFilters::SectionAnchor.new)
+    end
+
     input = <<~'HTML'
       <h1>ほげ</h1>
       <h2>ほげ</h2>
@@ -46,6 +49,6 @@ class HtmlTocRendererTest < MyTest
       </li></ul>
     HTML
 
-    assert_html_eq(subject.call(Nokogiri::HTML.fragment(input)), output)
+    assert_html_eq(mato.process(input).render_html_toc, output)
   end
 end
