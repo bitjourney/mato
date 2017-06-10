@@ -66,7 +66,9 @@ module Mato
       end
 
       def label_fragment(label)
-        %{<div class="code-label">#{label}</div>}
+        Nokogiri::HTML.fragment(%{<div class="code-label"/>}).tap do |fragment|
+          fragment.at('div').add_child(Nokogiri::XML::Text.new(label, fragment))
+        end
       end
 
       def format(lexer, source)
