@@ -2,7 +2,9 @@
 
 require_relative '../test_helper'
 
-class HtmlTocRendererTest < Minitest::Test
+class HtmlTocRendererTest < MyTest
+
+  # @return [Mato::Renderers::HtmlTocRenderer]
   def subject
     @subject ||= Mato::Renderers::HtmlTocRenderer.new(anchor_icon_element: nil)
   end

@@ -2,11 +2,10 @@
 
 require_relative '../test_helper'
 
-class CheckboxTest < Minitest::Test
-  def mato
-    @mato ||= Mato.define do |config|
-      config.append_html_filter(Mato::HtmlFilters::Checkbox.new)
-    end
+class CheckboxTest < FilterTest
+
+  def subject
+    Mato::HtmlFilters::Checkbox.new
   end
 
   def test_simle

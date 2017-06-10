@@ -2,16 +2,13 @@
 
 require_relative '../test_helper'
 
-class SyntaxHighlightTest < Minitest::Test
+class SyntaxHighlightTest < FilterTest
   def subject
     @subject ||= Mato::HtmlFilters::SyntaxHighlight.new
   end
 
   def highlight(markdown)
-    mato = Mato.define do |config|
-      config.append_html_filter(subject)
-    end
-    mato.process(markdown).render_html
+    process(markdown).render_html
   end
 
   def test_guess_lexer

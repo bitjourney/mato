@@ -7,15 +7,37 @@ require 'mato'
 require 'minitest/autorun'
 require 'minitest/power_assert'
 
-module MiniTest
-  class Test
-    def assert_html_eq(got, expected)
-      if got != expected
-        puts "expected:\n#{expected}"
-        puts "-----------------"
-        puts "got:\n#{got}"
-      end
-      assert { got == expected }
+class MyTest < MiniTest::Test
+  def assert_html_eq(actual, expected)
+    if actual != expected
+      s = +""
+      s << "expected:\n#{expected}"
+      s << "-----------------"
+      s << "got:\n#{actual}"
+      s << "-----------------"
+      s << "diff:\n#{diff(expected, actual)}"
+      s << "-----------------"
+      flunk
     end
+  end
+end
+
+class FilterTest < MyTest
+
+  def subject
+    raise "You must define subject"
+  end
+
+  # @return [Mato::Processor]
+  def mato
+    @mato ||= Mato.define do |config|
+      config.append_html_filter(subject)
+    end
+  end
+
+  # @param [String] markdown
+  # @return [Mato::Document]
+  def process(markdown)
+    mato.process(markdown)
   end
 end
