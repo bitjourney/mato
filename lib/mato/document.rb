@@ -7,7 +7,10 @@ require_relative './renderers/html_toc_renderer'
 # Intermediate Document
 module Mato
   class Document
+    # @return [Nokogiri::XML::Node]
     attr_reader :node
+
+    # @return [Mato::Context]
     attr_reader :context
 
     # @param [Nokogiri::XML::Node] node
@@ -17,12 +20,16 @@ module Mato
       @context = context
     end
 
+    def render(renderer)
+      renderer.call(@node, @context)
+    end
+
     def render_html
-      Mato::Renderers::HtmlRenderer.new.call(@node, @context)
+      render(Mato::Renderers::HtmlRenderer.new)
     end
 
     def render_html_toc
-      Mato::Renderers::HtmlTocRenderer.new.call(@node, @context)
+      render(Mato::Renderers::HtmlTocRenderer.new)
     end
   end
 end
