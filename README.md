@@ -1,17 +1,7 @@
-# Mato - Markdown Processing Toolkit
+# Mato - Markdown Toolkit based on CommonMark
 
 **Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible markdown-based content processing toolkit, inspired by [HTML::Pipeline](https://github.com/jch/html-pipeline).
 
-The `Mato` library converts markdown texts into some other format like HTML, as the following processes:
-
-*  Plain-text filtes processes the input source markdown text
-* A markdown processor translates a markdown content into CommonMark Node (sometimes called "Markdown Document")
-* CommonMark Node filters processes the node
-* A markdown renderer renders the markdown node into a HTML node (i.e.`Nokogiri::XML::Node`)
-* HTML filters processes the HTML node
-* A formatter converts the HTML node into an HTML representation, plain text, and so on
-
-Simply, it converts markdown into HTML with various middlewares applied.
 
 This gem is built on [commonmarker](https://github.com/gjtorikian/commonmarker), a [CommonMark](https://github.com/jgm/CommonMark) implementation,
 which can parse markdown documents into AST.
@@ -19,39 +9,50 @@ which can parse markdown documents into AST.
 ## Synopsis
 
 ```ruby
-# markdown to html:
-mato = mato.define do |config|
-    config.cache Rails.cache
+require 'mato'
 
-    config.use Mato::Middlewares::CommonMark.new(tagfiler: true)
-    config.use Mato::Middlewares::SyntaxHighlight
+# define a markdown-to-html processor:
+mato = Mato.define do |config|
+  # append pre-defined HTML filters:
+  config.append_html_filter(Mato::HtmlFilters::SyntaxHighlight.new)
+  config.append_html_filter(Mato::HtmlFilters::TaskList.new)
+  config.append_html_filter(Mato::HtmlFilters::SessionAnchor.new)
 
-    # use a custom middleware
-    config.use MyApp::SomethingGreat
+  # append MentionLink, a customizable HTML filter:
+  config.append_html_filter(Mato::HtmlFilters::MentionLink.new do |mention_candidate_map|
+    candidate_accounts = mention_candidate_map.keys.map { |name| name.gsub(/^\@/, '') }
+    User.where(account: candidate_accounts).each do |user|
+      mention = "@#{user.account}"
+      mention_candidate_map[mention].each do |node|
+        node.replace("<a href='https://twitter.com/#{mention}' class='mention'>#{mention}</a>")
+      end
+    end
+  end)
 end
 
 # render markdown as HTML:
 html = mato.process(markdown_content).render_html
 
-# same as the above, applying an extra middleware Mato::Middlewares::StripScript
-html = mato.process(markdown_content).apply(Mato::Middlewares::StripScript).render_html
-
-# render markdown as HTML ToC:
+# render markdown as HTML Table of Contents:
 html_toc = mato.process(markdown_content).render_html_toc
 
-# to extract metadata (e.g. links):
-links  = mato.process(markdown_content).reduce([]) do |document, links|
-    # document is a Nokogiri::HTML::Node
-    links << extract_links(document)
+# to extract metadata (e.g. links) with CSS selector:
+mato.process(markdown_content).css_selector('a').each do |element|
+    # do something with  element: Nokogiri::XML::Element
 end
-```
 
+# to extract metadata (e.g. links) with XPath selector:
+ mato.process(markdown_content).xpath_selector('./text()').each do |node|
+  # do something with node: Nokogiri::XML::Text
+end
+
+```
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
+```ruby:Gemfile
 gem 'mato'
 ```
 
