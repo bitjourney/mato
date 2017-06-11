@@ -28,7 +28,7 @@ mato = Mato.define do |config|
     # weave doc
   }
 
-  config.append_html_filter(Mato::HtmlFilters::Checkbox.new)
+  config.append_html_filter(Mato::HtmlFilters::TaskList.new)
   config.append_html_filter(Mato::HtmlFilters::MentionLink.new do |mention_candidate_map|
     candidate_accounts = mention_candidate_map.keys.map { |name| name.gsub(/^\@/, '') }
     User.where(account: candidate_accounts).each do |user|

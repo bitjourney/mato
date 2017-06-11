@@ -2,13 +2,12 @@
 
 module Mato
   module HtmlFilters
-    class Checkbox
+    class TaskList
       CHECKED_MARK = "[x] "
       UNCHECKED_MARK = "[ ] "
 
       DEFAULT_TASK_LIST_CLASS = "task-list-item"
       DEFAULT_CHECKBOX_CLASS = "task-list-item-checkbox"
-      DEFAULT_CHECKBOX_ID_PREFIX = DEFAULT_CHECKBOX_CLASS
 
       def initialize(task_list_class: DEFAULT_TASK_LIST_CLASS, checkbox_class: DEFAULT_CHECKBOX_CLASS)
         @task_list_class = task_list_class

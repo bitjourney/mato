@@ -2,10 +2,10 @@
 
 require_relative '../test_helper'
 
-class CheckboxTest < FilterTest
+class TaskListTest < FilterTest
 
   def subject
-    Mato::HtmlFilters::Checkbox.new
+    Mato::HtmlFilters::TaskList.new
   end
 
   def test_simle
@@ -13,7 +13,6 @@ class CheckboxTest < FilterTest
       * [ ] foo
       * [x] bar
       * baz
-      *
     MARKDOWN
 
     output = <<~'HTML'
@@ -23,7 +22,6 @@ class CheckboxTest < FilterTest
       <li class="task-list-item">
       <input type="checkbox" class="task-list-item-checkbox" disabled checked>bar</li>
       <li>baz</li>
-      <li>
       </ul>
     HTML
 
