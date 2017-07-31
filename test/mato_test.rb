@@ -13,4 +13,13 @@ class MatoTest < Minitest::Test
 
     assert { mato.process('Hello, world!').render_html == "<p>Hello, world!</p>\n" }
   end
+
+  def test_document_is_serializable
+    mato = Mato.define do |_config|
+    end
+
+    assert do
+      Marshal.load(Marshal.dump(mato.process('Hello, world!'))).render_html == "<p>Hello, world!</p>\n"
+    end
+  end
 end
