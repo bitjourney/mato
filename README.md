@@ -1,4 +1,4 @@
-# Mato - Markdown Toolkit based on CommonMark
+# Mato - Markdown Toolkit based on CommonMark [![Build Status](https://travis-ci.org/bitjourney/mato.svg?branch=master)](https://travis-ci.org/bitjourney/mato)
 
 **Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible markdown-based content processing toolkit, inspired by [HTML::Pipeline](https://github.com/jch/html-pipeline).
 
