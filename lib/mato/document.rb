@@ -31,5 +31,16 @@ module Mato
     def render_html_toc
       render(Mato::Renderers::HtmlTocRenderer.new)
     end
+
+    def marshal_dump
+      {
+        context: context,
+        html: node.to_s,
+      }
+    end
+
+    def marshal_load(data)
+      initialize(Nokogiri::HTML.fragment(data[:html]), context)
+    end
   end
 end
