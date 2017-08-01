@@ -30,20 +30,28 @@ mato = Mato.define do |config|
   end)
 end
 
-# render markdown as HTML:
-html = mato.process(markdown_content).render_html
+# prosess markdown into Mato::Document
+doc = mato.process(markdown_content)
+
+# render as HTML
+html = doc.render_html
 
 # render markdown as HTML Table of Contents:
-html_toc = mato.process(markdown_content).render_html_toc
+html_toc = doc.render_html_toc
 
-# to extract metadata (e.g. links) with CSS selector:
-mato.process(markdown_content).css_selector('a').each do |element|
-    # do something with  element: Nokogiri::XML::Element
+# to extract data (e.g. mentions) with CSS selector:
+doc.css('a').each do |element|
+  # do something with element: Nokogiri::XML::Element
 end
 
-# to extract metadata (e.g. links) with XPath selector:
- mato.process(markdown_content).xpath_selector('./text()').each do |node|
+# to extract data (e.g. mentions) with XPath selector:
+doc.xpath('./text()').each do |node|
   # do something with node: Nokogiri::XML::Text
+end
+
+# Mato::Document can be cached with Rails.cache (i.e. Marshal.dump ready)
+Rails.fetch(digest(markdown_content)) do
+  mato.process(markdown_content)
 end
 
 ```
