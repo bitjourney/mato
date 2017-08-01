@@ -16,7 +16,7 @@ mato = Mato.define do |config|
   # append pre-defined HTML filters:
   config.append_html_filter(Mato::HtmlFilters::SyntaxHighlight.new)
   config.append_html_filter(Mato::HtmlFilters::TaskList.new)
-  config.append_html_filter(Mato::HtmlFilters::SessionAnchor.new)
+  config.append_html_filter(Mato::HtmlFilters::SectionAnchor.new)
 
   # append MentionLink, a customizable HTML filter:
   config.append_html_filter(Mato::HtmlFilters::MentionLink.new do |mention_candidate_map|
