@@ -12,12 +12,11 @@ module Mato
         @anchor_icon_element = anchor_icon_element
       end
 
-      # @param [Nokogiri::XML::Node] node
-      # @param [Mato::Context]
-      def call(node, _context = nil)
+      # @param [Nokogiri::HTML::DocumentFragment] doc
+      def call(doc)
         anchor_builder = AnchorBuilder.new(@anchor_icon_element)
 
-        node.css(HX_PATTERN).each do |hx|
+        doc.css(HX_PATTERN).each do |hx|
           hx.children = anchor_builder.make_anchor_element(hx) + hx.children.to_html
         end
       end

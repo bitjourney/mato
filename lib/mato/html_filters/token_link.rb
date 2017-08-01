@@ -20,9 +20,9 @@ module Mato
         @builder = builder
       end
 
-      # @param [Nokogiri::XML::Node] node
-      def call(node, _context = nil)
-        node.xpath('.//text()').each do |text_node|
+      # @param [Nokogiri::HTML::DocumentFragment] doc
+      def call(doc)
+        doc.xpath('.//text()').each do |text_node|
           next if has_ancestor?(text_node, 'a', 'code')
 
           text_node.replace(text_node.content.gsub(pattern, &builder))

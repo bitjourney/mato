@@ -22,11 +22,11 @@ module Mato
         @link_builder = link_builder
       end
 
-      # @param [Nokogiri::XML::Node] node
-      def call(node, _context = nil)
+      # @param [Nokogiri::HTML::DocumentFragment] doc
+      def call(doc)
         candidate_map = {}
 
-        node.xpath('.//text()').each do |text_node|
+        doc.xpath('.//text()').each do |text_node|
           next if has_ancestor?(text_node, 'a', 'code', 'pre')
 
           fragment = text_node.content.gsub(pattern) do |mention|

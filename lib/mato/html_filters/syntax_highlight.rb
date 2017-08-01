@@ -6,8 +6,9 @@ module Mato
   module HtmlFilters
     class SyntaxHighlight
 
-      def call(node, _context)
-        node.search("pre").each do |pre|
+      # @param [Nokogiri::HTML::DocumentFragment] doc
+      def call(doc)
+        doc.search("pre").each do |pre|
           if pre.at('code')
             pre.replace(highlight(pre))
           end

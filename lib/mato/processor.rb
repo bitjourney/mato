@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative('./context')
 require_relative('./document')
 
 require 'nokogiri'
@@ -19,26 +18,25 @@ module Mato
     # @return [Mato::Document]
     def process(input)
       text = input.dup
-      context = config.context_factory.new(config)
 
       config.text_filters.each do |filter|
-        filter.call(text, context)
+        filter.call(text)
       end
 
       markdown_node = parse_markdown(text)
 
       config.markdown_filters.each do |filter|
-        filter.call(markdown_node, context)
+        filter.call(markdown_node)
       end
 
       html = render_to_html(markdown_node)
-      html_node = parse_html(html)
+      doc = parse_html(html)
 
       config.html_filters.each do |filter|
-        filter.call(html_node, context)
+        filter.call(doc)
       end
 
-      config.document_factory.new(html_node.freeze)
+      config.document_factory.new(doc.freeze)
     end
 
     # @param [String] text

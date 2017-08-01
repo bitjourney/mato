@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative('./context')
 require_relative('./document')
 
 module Mato
@@ -41,9 +40,6 @@ module Mato
     # @return [Cass<Nokogiri::HTML::DocumentFragment>]
     attr_reader :html_parser
 
-    # @return [Class<Mato::Context>]
-    attr_reader :context_factory
-
     # @return [Class<Mato::Document>]
     attr_reader :document_factory
 
@@ -64,7 +60,6 @@ module Mato
       @markdown_parser = CommonMarker
       @html_parser = Nokogiri::HTML::DocumentFragment
 
-      @context_factory = Context
       @document_factory = Document
 
       @markdown_extensions = DEFAULT_MARKDOWN_EXTENSIONS

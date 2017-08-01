@@ -14,9 +14,9 @@ module Mato
         @checkbox_class = checkbox_class
       end
 
-      # @param [Nokogiri::XML::Node] node
-      def call(node, _context = nil)
-        node.search("li").each do |li|
+      # @param [Nokogiri::HTML::DocumentFragment] doc
+      def call(doc)
+        doc.search("li").each do |li|
           weave(li)
         end
       end
