@@ -8,12 +8,8 @@ module Mato
 
       H_SELECTOR = %w(h1 h2 h3 h4 h5 h6).join(',')
 
-      def initialize(verbose: true)
-        @verbose = verbose
-      end
-
       # @param [Nokogiri::XML::Node] node
-      def call(node, _context = nil)
+      def call(node)
         s = +''
 
         stack = [0]

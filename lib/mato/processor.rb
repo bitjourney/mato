@@ -34,7 +34,7 @@ module Mato
         filter.call(html_node, context)
       end
 
-      config.document_factory.new(html_node, context)
+      config.document_factory.new(html_node)
     end
   end
 end

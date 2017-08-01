@@ -4,24 +4,19 @@
 require_relative './renderers/html_renderer'
 require_relative './renderers/html_toc_renderer'
 
-# Intermediate Document
+# Intermediate document class, which instance is *serializable*.
 module Mato
   class Document
     # @return [Nokogiri::XML::Node]
     attr_reader :node
 
-    # @return [Mato::Context]
-    attr_reader :context
-
     # @param [Nokogiri::XML::Node] node
-    # @param [Mato::Context] context
-    def initialize(html_node, context)
-      @node = html_node
-      @context = context
+    def initialize(node)
+      @node = node
     end
 
     def render(renderer)
-      renderer.call(@node, @context)
+      renderer.call(@node)
     end
 
     def render_html
@@ -34,13 +29,12 @@ module Mato
 
     def marshal_dump
       {
-        context: context,
         html: node.to_s,
       }
     end
 
     def marshal_load(data)
-      initialize(Nokogiri::HTML.fragment(data[:html]), context)
+      initialize(Nokogiri::HTML.fragment(data[:html]))
     end
   end
 end
