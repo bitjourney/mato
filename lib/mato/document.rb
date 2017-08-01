@@ -15,6 +15,15 @@ module Mato
       @fragment = fragment
     end
 
+    # @return [Nokogiri::XML::Node] A copy of fragment that are modified by html_filters
+    def apply_html_filters(*html_filters)
+      new_fragment = fragment.dup
+      html_filters.each do |html_filter|
+        html_filter.call(new_fragment)
+      end
+      self.class.new(new_fragment.freeze)
+    end
+
     # @param [String] selector
     # @return [Nokogiri::XML::NodeSet]
     def css(selector)
@@ -46,7 +55,7 @@ module Mato
     end
 
     def marshal_load(data)
-      initialize(Nokogiri::HTML.fragment(data[:fragment]))
+      initialize(Nokogiri::HTML.fragment(data[:fragment]).freeze)
     end
   end
 end
