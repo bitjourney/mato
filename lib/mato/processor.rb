@@ -38,7 +38,7 @@ module Mato
         filter.call(html_node, context)
       end
 
-      config.document_factory.new(html_node)
+      config.document_factory.new(html_node.freeze)
     end
 
     # @param [String] text

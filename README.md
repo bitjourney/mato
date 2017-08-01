@@ -54,6 +54,13 @@ Rails.fetch(digest(markdown_content)) do
   mato.process(markdown_content)
 end
 
+
+# applies extra filters and returns a new Mato::Document
+# because Mato::Document is serializable, you can cache the base doc and then apply extra filters on demaond
+new_doc = doc.apply_html_filters(
+  -> (fragment) { modify_fragment!(fragment) },
+  SomeHtmlFilter.new, # anything that has #call(node) method
+)
 ```
 
 ## Installation
