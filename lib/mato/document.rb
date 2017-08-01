@@ -7,16 +7,28 @@ require_relative './renderers/html_toc_renderer'
 # Intermediate document class, which instance is *serializable*.
 module Mato
   class Document
-    # @return [Nokogiri::XML::Node]
-    attr_reader :node
+    # @return [Nokogiri::XML::Element]
+    attr_reader :fragment
 
-    # @param [Nokogiri::XML::Node] node
-    def initialize(node)
-      @node = node
+    # @param [Nokogiri::XML::Element] fragment
+    def initialize(fragment)
+      @fragment = fragment
+    end
+
+    # @param [String] selector
+    # @return [Nokogiri::XML::NodeSet]
+    def css(selector)
+      fragment.css(selector)
+    end
+
+    # @param [String] query
+    # @return [Nokogiri::XML::NodeSet]
+    def xpath(query)
+      fragment.xpath(query)
     end
 
     def render(renderer)
-      renderer.call(@node)
+      renderer.call(fragment)
     end
 
     def render_html
@@ -29,12 +41,12 @@ module Mato
 
     def marshal_dump
       {
-        html: node.to_s,
+        fragment: fragment.to_s,
       }
     end
 
     def marshal_load(data)
-      initialize(Nokogiri::HTML.fragment(data[:html]))
+      initialize(Nokogiri::HTML.fragment(data[:fragment]))
     end
   end
 end
