@@ -3,6 +3,9 @@
 require_relative('./context')
 require_relative('./document')
 
+require 'nokogiri'
+require 'commonmarker'
+
 module Mato
   class Processor
     # @return [Mato::Config]
@@ -22,19 +25,38 @@ module Mato
         filter.call(text, context)
       end
 
-      markdown_node = config.markdown_processor.call(text, context)
+      markdown_node = parse_markdown(text)
 
       config.markdown_filters.each do |filter|
         filter.call(markdown_node, context)
       end
 
-      html_node = config.html_processor.call(markdown_node, context)
+      html = render_to_html(markdown_node)
+      html_node = parse_html(html)
 
       config.html_filters.each do |filter|
         filter.call(html_node, context)
       end
 
       config.document_factory.new(html_node)
+    end
+
+    # @param [String] text
+    # @return [CommonMarker::Node]
+    def parse_markdown(text)
+      config.markdown_parser.render_doc(text, config.markdown_parse_options, config.markdown_extensions)
+    end
+
+    # @param [CommonMarker::Node] markdown_node
+    # @return [String]
+    def render_to_html(markdown_node)
+      markdown_node.to_html(config.markdown_render_options)
+    end
+
+    # @param [String] html
+    # @return [Nokogiri::HTML::DocumentFragment]
+    def parse_html(html)
+      config.html_parser.parse(html)
     end
   end
 end

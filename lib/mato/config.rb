@@ -1,13 +1,31 @@
 # frozen_string_literal: true
 
-require_relative('./markdown_processor')
-require_relative('./html_processor')
-
 require_relative('./context')
 require_relative('./document')
 
 module Mato
   class Config
+    # https://github.com/gjtorikian/commonmarker#parse-options
+    DEFAULT_MARKDOWN_PARSE_OPTIONS = [
+      :DEFAULT,
+      :VALIDATE_UTF8,
+    ]
+
+    # https://github.com/gjtorikian/commonmarker#render-options
+    DEFAULT_MARKDOWN_RENDER_OPTIONS = [
+      :DEFAULT,
+      :HARDBREAKS, # convert "\n" as <br/>
+      # :SOURCEPOS, // TODO: enable it after assertions are supported
+    ]
+
+    # https://github.com/github/cmark/tree/master/extensions
+    DEFAULT_MARKDOWN_EXTENSIONS = [
+      :table,
+      :strikethrough,
+      :autolink,
+      :tagfilter,
+    ]
+
     # @return [Array<Proc>]
     attr_reader :text_filters
 
@@ -17,11 +35,11 @@ module Mato
     # @return [Array<Proc>]
     attr_reader :html_filters
 
-    # @return [Mato::MarkdownProcessor]
-    attr_reader :markdown_processor
+    # @return [Class<CommonMarker]
+    attr_reader :markdown_parser
 
-    # @return [Mato::HtmlProcessor]
-    attr_reader :html_processor
+    # @return [Cass<Nokogiri::HTML::DocumentFragment>]
+    attr_reader :html_parser
 
     # @return [Class<Mato::Context>]
     attr_reader :context_factory
@@ -29,15 +47,29 @@ module Mato
     # @return [Class<Mato::Document>]
     attr_reader :document_factory
 
+    # @return [Array<Symbol>] CommonMarker's parse extensions
+    attr_reader :markdown_extensions
+
+    # @return [Array<Symbol>] CommonMarker's pars options
+    attr_reader :markdown_parse_options
+
+    # @return [Array<Symbol>] CommonMarker's HTML rendering options
+    attr_reader :markdown_render_options
+
     def initialize
       @text_filters = []
       @markdown_filters = []
       @html_filters = []
 
-      @markdown_processor = MarkdownProcessor.new
-      @html_processor = HtmlProcessor.new
+      @markdown_parser = CommonMarker
+      @html_parser = Nokogiri::HTML::DocumentFragment
+
       @context_factory = Context
       @document_factory = Document
+
+      @markdown_extensions = DEFAULT_MARKDOWN_EXTENSIONS
+      @markdown_parse_options = DEFAULT_MARKDOWN_PARSE_OPTIONS
+      @markdown_render_options = DEFAULT_MARKDOWN_RENDER_OPTIONS
     end
 
     # @param [Proc] block
