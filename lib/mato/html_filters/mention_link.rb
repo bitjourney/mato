@@ -24,7 +24,7 @@ module Mato
 
       # @param [Nokogiri::XML::Node] node
       def call(node, _context = nil)
-        candidates = []
+        candidate_map = {}
 
         node.xpath('.//text()').each do |text_node|
           next if has_ancestor?(text_node, 'a', 'code', 'pre')
@@ -35,12 +35,8 @@ module Mato
 
           next if text_node.content == fragment
 
-          candidates << text_node.replace(fragment)
-        end
-
-        candidate_map = {}
-        candidates.each do |candidate|
-          candidate.search('span').each do |mention_element|
+          fragment_element = text_node.replace(fragment)
+          fragment_element.search('span').each do |mention_element|
             (candidate_map[mention_element.child.content] ||= []) << mention_element
           end
         end
