@@ -16,8 +16,7 @@ module Mato
       MENTION_PATTERN = /\@[a-zA-Z0-9_]+\b/ # e.g. @foo
 
       # @param [Regexp] pattern
-      # @param [Proc] finder
-      # @param [Proc] link_builder
+      # @param [Proc] link_builder A block that takes Hash<String, Array<Nokogiri::XML::Node>>
       def initialize(pattern = MENTION_PATTERN, &link_builder)
         @pattern = pattern
         @link_builder = link_builder
@@ -25,17 +24,30 @@ module Mato
 
       # @param [Nokogiri::XML::Node] node
       def call(node, _context = nil)
-        candidate_map = {}
+        candidates = []
 
         node.xpath('.//text()').each do |text_node|
-          next if has_ancestor?(text_node, 'a', 'code')
+          next if has_ancestor?(text_node, 'a', 'code', 'pre')
 
-          text_node.content.scan(pattern) do |mention|
-            (candidate_map[mention] ||= []) << text_node
+          fragment = text_node.content.gsub(pattern) do |mention|
+            "<span>#{mention}</span>"
+          end
+
+          next if text_node.content == fragment
+
+          candidates << text_node.replace(fragment)
+        end
+
+        candidate_map = {}
+        candidates.each do |candidate|
+          candidate.search('span').each do |mention_element|
+            (candidate_map[mention_element.child.content] ||= []) << mention_element
           end
         end
 
-        link_builder.call(candidate_map)
+        unless candidate_map.empty?
+          link_builder.call(candidate_map)
+        end
       end
     end
   end
