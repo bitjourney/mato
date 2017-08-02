@@ -8,6 +8,8 @@ require 'minitest/autorun'
 require 'minitest/power_assert'
 
 class MyTest < MiniTest::Test
+  include Minitest::PowerAssert::Assertions
+
   def assert_html_eq(actual, expected)
     if actual != expected
       s = +""

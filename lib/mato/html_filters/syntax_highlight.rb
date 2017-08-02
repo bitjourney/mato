@@ -6,6 +6,8 @@ module Mato
   module HtmlFilters
     class SyntaxHighlight
 
+      FORMATTER = Rouge::Formatters::HTML.new
+
       # @param [Nokogiri::HTML::DocumentFragment] doc
       def call(doc)
         doc.search("pre").each do |pre|
@@ -66,7 +68,7 @@ module Mato
         document = Nokogiri::HTML.fragment(%{<div class="code-frame"/>})
 
         div = document.at('div')
-        div.add_child(label_fragment(filename || language || lexer.title)) if filename || !lexer.is_a?(::Rouge::Lexers::PlainText)
+        div.add_child(label_fragment(filename || language || lexer.tag)) if filename || !lexer.is_a?(Rouge::Lexers::PlainText)
         div.add_child(%{<pre class="highlight"><code data-lang="#{lexer.tag}">#{format(lexer, source)}</code></pre>})
 
         document
@@ -80,7 +82,7 @@ module Mato
 
       def format(lexer, source)
         tokens = lexer.lex(source)
-        ::Rouge::Formatters::HTML.new.format(tokens)
+        FORMATTER.format(tokens)
       end
     end
   end

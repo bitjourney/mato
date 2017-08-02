@@ -72,4 +72,22 @@ class SyntaxHighlightTest < FilterTest
       </div>
     HTML
   end
+
+  def test_guess_language
+    markdown = <<~'MD'
+      ```
+      #!/usr/bin/env ruby
+      p "Hello, world!"
+      ````
+    MD
+
+    assert_html_eq(highlight(markdown), <<~'HTML')
+      <div class="code-frame">
+      <div class="code-label">ruby</div>
+      <pre class="highlight"><code data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+      <span class="nb">p</span> <span class="s2">"Hello, world!"</span>
+      </code></pre>
+      </div>
+    HTML
+  end
 end
