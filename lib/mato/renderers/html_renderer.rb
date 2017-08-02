@@ -3,10 +3,10 @@
 module Mato
   module Renderers
     class HtmlRenderer
-      # @param [Nokogiri::XML::Node] node
+      # @param [Nokogiri::HTML::DocumentFragment] doc
       # @return [String]
-      def call(node)
-        node.to_html
+      def call(doc)
+        doc.to_html
       end
     end
   end

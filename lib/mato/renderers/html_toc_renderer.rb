@@ -8,13 +8,13 @@ module Mato
 
       H_SELECTOR = %w(h1 h2 h3 h4 h5 h6).join(',')
 
-      # @param [Nokogiri::XML::Node] node
-      def call(node)
+      # @param [Nokogiri::HTML::DocumentFragment] doc
+      def call(doc)
         s = +''
 
         stack = [0]
 
-        node.search(H_SELECTOR).each do |hx|
+        doc.css(H_SELECTOR).each do |hx|
           h_level = level(hx)
           if h_level > stack.last
             stack.push(h_level)
@@ -27,7 +27,7 @@ module Mato
           end
 
           first_child = hx.child
-          if first_child.name == 'a' && first_child['class'] == AnchorBuilder::CSS_CLASS_NAME
+          if anchor?(first_child)
             s << %{<li><a href="##{first_child['id']}">}
 
             child = first_child.next_sibling
@@ -55,6 +55,11 @@ module Mato
       # @param [Nokogiri::XML::Node] node
       def level(node)
         /\d+/.match(node.name)[0].to_i
+      end
+
+      # @param [Nokogiri::XML::Node] node
+      def anchor?(node)
+        node.name == 'a' && node['class'] == AnchorBuilder::CSS_CLASS_NAME
       end
     end
   end
