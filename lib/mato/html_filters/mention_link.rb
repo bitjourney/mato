@@ -25,24 +25,34 @@ module Mato
       # @param [Nokogiri::HTML::DocumentFragment] doc
       def call(doc)
         candidate_map = {}
+        candidates = []
 
         doc.xpath('.//text()').each do |text_node|
           next if has_ancestor?(text_node, 'a', 'code', 'pre')
 
-          fragment = text_node.content.gsub(pattern) do |mention|
-            "<span>#{mention}</span>"
+          candidate_html = text_node.content.gsub(pattern) do |mention|
+            "<span class='mention-candidate'>#{mention}</span>"
           end
 
-          next if text_node.content == fragment
+          next if text_node.content == candidate_html
 
-          fragment_element = text_node.replace(fragment)
-          fragment_element.search('span').each do |mention_element|
+          candidate_fragment = text_node.replace(candidate_html)
+          candidate_fragment.css('span').each do |mention_element|
             (candidate_map[mention_element.child.content] ||= []) << mention_element
           end
+
+          candidates << candidate_fragment
         end
 
         unless candidate_map.empty?
           link_builder.call(candidate_map)
+
+          # cleanup
+          candidates.each do |candidate_fragment|
+            candidate_fragment.css('span.mention-candidate').each do |node|
+              node.replace(node.child.content)
+            end
+          end
         end
       end
     end

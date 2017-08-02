@@ -36,8 +36,13 @@ class MentionLinkTest < FilterTest
                    %{<p><a href="https://twitter.com/@valid" class="mention">@valid</a> <a href="https://twitter.com/@valid" class="mention">@valid</a></p>\n}
   end
 
+  def test_mention_filter_for_multiple_valid_and_invalid_accounts
+    assert_html_eq process('@valid @invalid').render_html,
+                   %{<p><a href="https://twitter.com/@valid" class="mention">@valid</a> @invalid</p>\n}
+  end
+
   def test_mention_filter_for_invalid
-    assert_html_eq process('@invalid').render_html, %{<p><span>@invalid</span></p>\n}
+    assert_html_eq process('@invalid').render_html, %{<p>@invalid</p>\n}
   end
 
   def test_mention_filter_for_valid_in_a
@@ -46,5 +51,9 @@ class MentionLinkTest < FilterTest
 
   def test_mention_filter_for_valid_in_code
     assert_html_eq process('<code>@valid</code>').render_html, %{<p><code>@valid</code></p>\n}
+  end
+
+  def test_mention_filter_for_valid_in_pre
+    assert_html_eq process('<pre>@valid</pre>').render_html, %{<pre>@valid</pre>\n}
   end
 end
