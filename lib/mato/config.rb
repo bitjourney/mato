@@ -5,9 +5,9 @@ require_relative('./document')
 module Mato
   class Config
     # https://github.com/gjtorikian/commonmarker#parse-options
-    DEFAULT_MARKDOWN_PARSE_OPTIONS = [
-      :DEFAULT,
-      :VALIDATE_UTF8,
+    DEFAULT_MARKDOWN_PARSE_OPTIONS = %i[
+      DEFAULT
+      VALIDATE_UTF8
     ]
 
     # https://github.com/gjtorikian/commonmarker#render-options
@@ -18,11 +18,11 @@ module Mato
     ]
 
     # https://github.com/github/cmark/tree/master/extensions
-    DEFAULT_MARKDOWN_EXTENSIONS = [
-      :table,
-      :strikethrough,
-      :autolink,
-      :tagfilter,
+    DEFAULT_MARKDOWN_EXTENSIONS = %i[
+      table
+      strikethrough
+      autolink
+      tagfilter
     ]
 
     # @return [Array<Proc>]

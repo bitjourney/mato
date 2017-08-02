@@ -7,7 +7,7 @@ module Mato
 
     # assumes use of font-awesome
     # specify it as "<span aria-hidden=\"true\" class=\"octicon octicon-link\"></span>" if you use octicon
-    DEFAULT_ANCHOR_ICON_ELEMENT = %q{<i class="fa fa-link"></i>}
+    DEFAULT_ANCHOR_ICON_ELEMENT = '<i class="fa fa-link"></i>'
 
     CSS_CLASS_NAME = "anchor"
 
