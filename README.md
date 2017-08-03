@@ -82,6 +82,11 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## Optional Dependencies
+
+* [rouge](https://github.com/jneen/rouge) (>= 2.0) to use `SyntaxHighlight`
+* [sanitize](https://github.com/rgrove/sanitize) (>= 4.0) to use `Sanitization`
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
