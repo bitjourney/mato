@@ -8,4 +8,4 @@ gemspec
 gem "m"
 gem "minitest"
 gem "minitest-power_assert"
-gem "nokogumbo"
+gem "sanitize"

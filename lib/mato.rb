@@ -11,6 +11,7 @@ require_relative "./mato/html_filters/mention_link"
 require_relative "./mato/html_filters/syntax_highlight"
 require_relative "./mato/html_filters/task_list"
 require_relative "./mato/html_filters/section_anchor"
+require_relative "./mato/html_filters/sanitization"
 
 module Mato
   # @param [Proc] block

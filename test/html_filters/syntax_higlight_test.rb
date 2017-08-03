@@ -2,6 +2,8 @@
 
 require_relative '../test_helper'
 
+require 'rouge'
+
 class SyntaxHighlightTest < FilterTest
   def subject
     @subject ||= Mato::HtmlFilters::SyntaxHighlight.new

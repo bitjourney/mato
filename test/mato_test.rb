@@ -2,7 +2,7 @@
 
 require_relative './test_helper'
 
-class MatoTest < Minitest::Test
+class MatoTest < MyTest
   def mato
     @mato ||= Mato.define do |_config|
     end

@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'rouge'
+# do require 'rouge' by yourself
 
 module Mato
   module HtmlFilters
     class SyntaxHighlight
-
-      FORMATTER = Rouge::Formatters::HTML.new
 
       # @param [Nokogiri::HTML::DocumentFragment] doc
       def call(doc)
@@ -80,9 +78,13 @@ module Mato
         end
       end
 
+      def formatter
+        @formatter ||= Rouge::Formatters::HTML.new
+      end
+
       def format(lexer, source)
         tokens = lexer.lex(source)
-        FORMATTER.format(tokens)
+        formatter.format(tokens)
       end
     end
   end
