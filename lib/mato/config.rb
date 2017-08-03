@@ -10,14 +10,14 @@ module Mato
     DEFAULT_MARKDOWN_PARSE_OPTIONS = %i[
       DEFAULT
       VALIDATE_UTF8
-    ]
+    ].freeze
 
     # https://github.com/gjtorikian/commonmarker#render-options
     DEFAULT_MARKDOWN_RENDER_OPTIONS = [
       :DEFAULT,
       :HARDBREAKS, # convert "\n" as <br/>
       # :SOURCEPOS, // TODO: enable it after assertions are supported
-    ]
+    ].freeze
 
     # https://github.com/github/cmark/tree/master/extensions
     DEFAULT_MARKDOWN_EXTENSIONS = %i[
@@ -25,7 +25,7 @@ module Mato
       strikethrough
       autolink
       tagfilter
-    ]
+    ].freeze
 
     # @return [Array<Proc>]
     attr_accessor :text_filters
