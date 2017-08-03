@@ -30,21 +30,21 @@ mato = Mato.define do |config|
   end)
 end
 
-# prosess markdown into Mato::Document
+# Prosesses markdown into Mato::Document:
 doc = mato.process(markdown_content)
 
-# render as HTML
+# Renders doc as HTML:
 html = doc.render_html
 
-# render markdown as HTML Table of Contents:
+# Renders doc as HTML Table of Contents:
 html_toc = doc.render_html_toc
 
-# to extract data (e.g. mentions) with CSS selector:
+# Extracts elements (e.g. mentions) with CSS selector:
 doc.css('a').each do |element|
   # do something with element: Nokogiri::XML::Element
 end
 
-# to extract data (e.g. mentions) with XPath selector:
+# Extracts nodes (e.g. mentions) with XPath selector:
 doc.xpath('./text()').each do |node|
   # do something with node: Nokogiri::XML::Text
 end
@@ -54,9 +54,8 @@ Rails.fetch(digest(markdown_content)) do
   mato.process(markdown_content)
 end
 
-
-# applies extra filters and returns a new Mato::Document
-# because Mato::Document is serializable, you can cache the base doc and then apply extra filters on demaond
+# Applies extra filters and returns a new Mato::Document.
+# Because Mato::Document is serializable, you can cache the base doc and then apply extra filters on demaond.
 new_doc = doc.apply_html_filters(
   -> (fragment) { modify_fragment!(fragment) },
   SomeHtmlFilter.new, # anything that has #call(node) method
