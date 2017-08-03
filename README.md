@@ -1,10 +1,10 @@
-# Mato - Markdown Toolkit based on CommonMark [![Build Status](https://travis-ci.org/bitjourney/mato.svg?branch=master)](https://travis-ci.org/bitjourney/mato)
+# Mato [![Build Status](https://travis-ci.org/bitjourney/mato.svg?branch=master)](https://travis-ci.org/bitjourney/mato)
 
-**Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible markdown-based content processing toolkit, inspired by [HTML::Pipeline](https://github.com/jch/html-pipeline).
+**Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible, pipeline-based markdown processing toolkit, inspired by [HTML::Pipeline](https://github.com/jch/html-pipeline).
 
 
 This gem is built on [commonmarker](https://github.com/gjtorikian/commonmarker), a [CommonMark](https://github.com/jgm/CommonMark) implementation,
-which can parse markdown documents into AST.
+which can parse markdown documents.
 
 ## Synopsis
 
@@ -78,9 +78,16 @@ Or install it yourself as:
 
     $ gem install mato
 
-## Usage
+## Motivation
 
-TODO: Write usage instructions here
+The original idea comes from [qiita-markdown](https://github.com/increments/qiita-markdown),
+a markdown processing tool like mato, based on html-pipeline.
+
+html-pipeline is a great tool that invents the idea of "pipeline", to filter HTML node (or `Nokogiri::XML::Node`) in each filter. This is safe, fast, and easy to enhance.
+
+However, html-pipeline is not suitable for cache, esp. context-aware caching.
+
+(TBD)
 
 ## Optional Dependencies
 
@@ -96,7 +103,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/bitjourney/mato.
-
 
 ## License
 

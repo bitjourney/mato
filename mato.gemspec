@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["goro-fuj@bitjoureny.com"]
 
   spec.summary       = 'MArkdown TOolkit'
-  spec.description   = 'An extensible markdown processing toolkit based on CommonMark'
+  spec.description   = 'A pipeline-based markdown toolkit with CommonMark(er)'
   spec.homepage      = "https://github.com/bitjourney/mato"
   spec.license       = "MIT"
 
