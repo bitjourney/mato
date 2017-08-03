@@ -7,15 +7,19 @@ require_relative './renderers/html_toc_renderer'
 # Intermediate document class, which instance is *serializable*.
 module Mato
   class Document
-    # @return [Nokogiri::XML::Element]
+    # @return [Nokogiri::HTML::DocumentFragment]
     attr_reader :fragment
 
-    # @param [Nokogiri::XML::Element] fragment
+    def self.empty
+      new(Nokogiri::HTML.fragment(''))
+    end
+
+    # @param [Nokogiri::HTML::DocumentFragment] fragment
     def initialize(fragment)
       @fragment = fragment
     end
 
-    # @return [Nokogiri::XML::Node] A copy of fragment that are modified by html_filters
+    # @return [Nokogiri::HTML::DocumentFragment] A copy of fragment that are modified by html_filters
     def apply_html_filters(*html_filters)
       new_fragment = fragment.dup
       html_filters.each do |html_filter|

@@ -2,6 +2,8 @@
 
 require_relative('./document')
 
+require 'nokogiri'
+
 module Mato
   class Config
     # https://github.com/gjtorikian/commonmarker#parse-options
@@ -26,31 +28,31 @@ module Mato
     ]
 
     # @return [Array<Proc>]
-    attr_reader :text_filters
+    attr_accessor :text_filters
 
     # @return [Array<Proc>]
-    attr_reader :markdown_filters
+    attr_accessor :markdown_filters
 
     # @return [Array<Proc>]
-    attr_reader :html_filters
+    attr_accessor :html_filters
 
     # @return [Class<CommonMarker]
-    attr_reader :markdown_parser
+    attr_accessor :markdown_parser
 
     # @return [Cass<Nokogiri::HTML::DocumentFragment>]
-    attr_reader :html_parser
+    attr_accessor :html_parser
 
     # @return [Class<Mato::Document>]
-    attr_reader :document_factory
+    attr_accessor :document_factory
 
     # @return [Array<Symbol>] CommonMarker's parse extensions
-    attr_reader :markdown_extensions
+    attr_accessor :markdown_extensions
 
     # @return [Array<Symbol>] CommonMarker's pars options
-    attr_reader :markdown_parse_options
+    attr_accessor :markdown_parse_options
 
     # @return [Array<Symbol>] CommonMarker's HTML rendering options
-    attr_reader :markdown_render_options
+    attr_accessor :markdown_render_options
 
     def initialize
       @text_filters = []

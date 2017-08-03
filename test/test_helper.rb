@@ -2,6 +2,8 @@
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
+require 'nokogumbo' # Nokogiri::HTML5
+
 require 'mato'
 
 require 'minitest/autorun'
