@@ -50,5 +50,7 @@ class HtmlTocRendererTest < MyTest
     HTML
 
     assert_html_eq(mato.process(input).render_html_toc, output)
+
+    assert_html_eq(Marshal.load(Marshal.dump(mato.process(input))).render_html_toc, output)
   end
 end

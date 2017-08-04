@@ -54,7 +54,7 @@ module Mato
 
     def marshal_dump
       {
-        fragment: fragment.to_s,
+        fragment: fragment.to_html(save_with: 0),
       }
     end
 
