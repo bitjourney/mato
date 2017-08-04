@@ -5,8 +5,8 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in mato.gemspec
 gemspec
 
-gem "sanitize"
 gem "rouge"
+gem "sanitize"
 
 gem "m"
 gem "minitest"
