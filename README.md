@@ -6,7 +6,7 @@
 This gem is built on [commonmarker](https://github.com/gjtorikian/commonmarker), a [CommonMark](https://github.com/jgm/CommonMark) implementation,
 which can parse markdown documents.
 
-## Synopsis
+## Usage
 
 ```ruby
 require 'mato'
@@ -58,8 +58,68 @@ end
 # Because Mato::Document is serializable, you can cache the base doc and then apply extra filters on demaond.
 new_doc = doc.apply_html_filters(
   -> (fragment) { modify_fragment!(fragment) },
-  SomeHtmlFilter.new, # anything that has #call(node) method
+  SomeHtmlFilter.new(some_context), # anything that has #call(node) method
 )
+```
+
+## Filters
+
+There are three kinds of filters to mutate input texts in Mato:
+
+* Text Filters
+* Markdown Filters
+* HTML Filters
+
+### Text Filters
+
+A text filter is a callable instance that takes a `String`
+and returns a mutated arg.
+
+For example:
+
+```ruby
+mato = Mato.define do |config|
+  config.append_text_filter(->(text) {
+    text.upcase
+  })
+end
+
+mato.process("Hello!").render_html # "<p>HELLO!</p>\n"
+```
+
+### Markdown Filters
+
+A markdown filter is a callable instance that takes a ``CommonMarker::Node`
+and mutate it in the method. The return value is ignored.
+
+For example:
+
+```ruby
+mato = Mato.define do |config|
+  config.append_markdown_filter(->(doc) {
+    paragraph = doc.first_child
+    text_node = paragraph.first_child
+    text_node.string_content = text_node.string_content.upcase
+  })
+end
+
+mato.process("Hello!").render_html # "<p>HELLO!</p>\n"
+```
+
+### HTML Filters
+
+An HTML filter is a callable object that takes a ``Nokogiri::HTML::DocumentFragment`
+and mutate it in the method. The return value is ignored.
+
+```ruby
+mato = Mato.define do |config|
+  config.append_html_filter(->(doc) {
+    text_node = doc.xpath('.//text()').first
+    text_node.content = text_node.content.upcase
+  })
+end
+
+mato.process("Hello!").render_html # "<p>HELLO!</p>\n"
 ```
 
 ## Installation
