@@ -24,10 +24,4 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "nokogiri", ">= 1.6"
   spec.add_runtime_dependency "commonmarker", ">= 0.14"
-
-  # spec.add_optional_dependency "sanitize", ">= 3.0"
-  # spec.add_optional_dependency "rouge", ">= 2.0"
-
-  spec.add_development_dependency "bundler", ">= 1.14"
-  spec.add_development_dependency "rake", ">= 10.0"
 end
