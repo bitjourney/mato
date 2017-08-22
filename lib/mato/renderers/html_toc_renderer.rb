@@ -38,7 +38,12 @@ module Mato
 
             s << %{</a>}
           else
-            s << %{<li>#{hx.children}}
+            duped_hx = hx.dup
+            duped_hx.css('a').each do |a|
+              a.replace(a.children)
+            end
+
+            s << %{<li>#{duped_hx.children}}
           end
         end
 
