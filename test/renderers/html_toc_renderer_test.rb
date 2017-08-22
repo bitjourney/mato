@@ -29,6 +29,22 @@ class HtmlTocRendererTest < MyTest
     assert_html_eq(subject.call(Nokogiri::HTML.fragment(input)), output)
   end
 
+  def test_with_links
+    input = <<~'HTML'
+      <h1><a href="/">first</a></h1>
+    HTML
+
+    output = <<~'HTML'
+      <ul>
+      <li>first</li></ul>
+    HTML
+
+    fragment = Nokogiri::HTML.fragment(input)
+    expected_fragment = fragment.dup
+    assert_html_eq(subject.call(fragment), output)
+    assert_html_eq(fragment.to_s, expected_fragment.to_s)
+  end
+
   def test_with_anchor
     mato = Mato.define do |config|
       config.append_html_filter(Mato::HtmlFilters::SectionAnchor.new)
