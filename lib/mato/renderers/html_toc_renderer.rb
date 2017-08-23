@@ -7,6 +7,7 @@ module Mato
     class HtmlTocRenderer
 
       H_SELECTOR = %w(h1 h2 h3 h4 h5 h6).join(',')
+      ANCHOR_SELECTOR = "a.#{AnchorBuilder::CSS_CLASS_NAME}"
 
       # @param [Nokogiri::HTML::DocumentFragment] doc
       def call(doc)
@@ -24,11 +25,13 @@ module Mato
               s << %{</li></ul>\n}
               stack.pop
             end
+          else
+            s << %{</li>\n}
           end
 
           node = hx.dup
 
-          anchor = node.css("a.#{AnchorBuilder::CSS_CLASS_NAME}").first
+          anchor = node.css(ANCHOR_SELECTOR).first
 
           s << %{<li>}
           if anchor

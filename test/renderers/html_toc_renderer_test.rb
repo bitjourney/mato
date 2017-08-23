@@ -13,6 +13,7 @@ class HtmlTocRendererTest < MyTest
     input = <<~'HTML'
       <h1>first</h1>
       <h2>second</h2>
+      <h2>second</h2>
       <h5>fifth</h5>
       <h1>first</h1>
     HTML
@@ -20,6 +21,7 @@ class HtmlTocRendererTest < MyTest
     output = <<~'HTML'
       <ul>
       <li>first<ul>
+      <li>second</li>
       <li>second<ul>
       <li>fifth</li></ul>
       </li></ul>
