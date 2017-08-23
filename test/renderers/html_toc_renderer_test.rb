@@ -69,4 +69,23 @@ class HtmlTocRendererTest < MyTest
 
     assert_html_eq(Marshal.load(Marshal.dump(mato.process(input))).render_html_toc, output)
   end
+
+  def test_with_anchor_and_links
+    mato = Mato.define do |config|
+      config.append_html_filter(Mato::HtmlFilters::SectionAnchor.new)
+    end
+
+    input = <<~'HTML'
+      <h1><a href="/">ほげ</a></h1>
+    HTML
+
+    output = <<~'HTML'
+      <ul>
+      <li><a href="#%E3%81%BB%E3%81%92">ほげ</a></li></ul>
+    HTML
+
+    assert_html_eq(mato.process(input).render_html_toc, output)
+
+    assert_html_eq(Marshal.load(Marshal.dump(mato.process(input))).render_html_toc, output)
+  end
 end

@@ -26,24 +26,23 @@ module Mato
             end
           end
 
-          first_child = hx.child
-          if anchor?(first_child)
-            s << %{<li><a href="##{first_child['id']}">}
+          node = hx.dup
 
-            child = first_child.next_sibling
-            while child
-              s << child.to_html
-              child = child.next_sibling
-            end
+          anchor = node.css("a.#{AnchorBuilder::CSS_CLASS_NAME}").first
 
+          s << %{<li>}
+          if anchor
+            s << %{<a href="##{anchor['id']}">}
+            anchor.unlink
+          end
+
+          node.css('a').each do |a|
+            a.replace(a.children)
+          end
+          s << node
+
+          if anchor
             s << %{</a>}
-          else
-            duped_hx = hx.dup
-            duped_hx.css('a').each do |a|
-              a.replace(a.children)
-            end
-
-            s << %{<li>#{duped_hx.children}}
           end
         end
 
@@ -60,11 +59,6 @@ module Mato
       # @param [Nokogiri::XML::Node] node
       def level(node)
         /\d+/.match(node.name)[0].to_i
-      end
-
-      # @param [Nokogiri::XML::Node] node
-      def anchor?(node)
-        node.name == 'a' && node['class'] == AnchorBuilder::CSS_CLASS_NAME
       end
     end
   end
