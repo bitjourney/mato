@@ -42,7 +42,7 @@ module Mato
           node.css('a').each do |a|
             a.replace(a.children)
           end
-          s << node
+          s << node.children.to_html(save_with: 0)
 
           if anchor
             s << %{</a>}
