@@ -1,5 +1,11 @@
 # The revision history of Mato
 
+## v1.0.3 - 2017/08/23
+
+https://github.com/bitjourney/mato/compare/v1.0.2...v1.0.3
+
+* fix issues that tags are remvoed from ToC (degraded in #4, fixed in [#5](https://github.com/bitjourney/mato/pull/5))
+
 ## v1.0.2 - 2017/08/23
 
 https://github.com/bitjourney/mato/compare/v1.0.1...v1.0.2
