@@ -13,6 +13,7 @@ class HtmlTocRendererTest < MyTest
     input = <<~'HTML'
       <h1>first</h1>
       <h2>second</h2>
+      <h2>second</h2>
       <h5>fifth</h5>
       <h1>first</h1>
     HTML
@@ -20,6 +21,7 @@ class HtmlTocRendererTest < MyTest
     output = <<~'HTML'
       <ul>
       <li>first<ul>
+      <li>second</li>
       <li>second<ul>
       <li>fifth</li></ul>
       </li></ul>
@@ -63,6 +65,25 @@ class HtmlTocRendererTest < MyTest
       <li><a href="#foo-bar-baz">foo "bar" baz</a></li></ul>
       </li></ul>
       </li></ul>
+    HTML
+
+    assert_html_eq(mato.process(input).render_html_toc, output)
+
+    assert_html_eq(Marshal.load(Marshal.dump(mato.process(input))).render_html_toc, output)
+  end
+
+  def test_with_anchor_and_links
+    mato = Mato.define do |config|
+      config.append_html_filter(Mato::HtmlFilters::SectionAnchor.new)
+    end
+
+    input = <<~'HTML'
+      <h1><a href="/">ほげ</a></h1>
+    HTML
+
+    output = <<~'HTML'
+      <ul>
+      <li><a href="#%E3%81%BB%E3%81%92">ほげ</a></li></ul>
     HTML
 
     assert_html_eq(mato.process(input).render_html_toc, output)
