@@ -1,5 +1,11 @@
 # The revision history of Mato
 
+## v1.1.0 - 2017/08/24
+
+https://github.com/bitjourney/mato/compare/v1.0.3...v1.1.0
+
+* wrap single, bare `<img/>` with `<p/>` [#6](https://github.com/bitjourney/mato/pull/6)
+
 ## v1.0.3 - 2017/08/23
 
 https://github.com/bitjourney/mato/compare/v1.0.2...v1.0.3
