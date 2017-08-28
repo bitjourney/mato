@@ -59,5 +59,9 @@ module Mato
     def parse_html(html)
       config.html_parser.parse(html)
     end
+
+    def convert(content, flavor:)
+      Mato::Converter.new(self, content, flavor).run
+    end
   end
 end
