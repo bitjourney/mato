@@ -1,5 +1,12 @@
 # The revision history of Mato
 
+## v1.2.0 - 2017/08/28
+
+https://github.com/bitjourney/mato/compare/v1.1.0...v1.2.0
+
+* *Experimental*: `Mato::Processor#convert` to convert X-flavored markdown to CommonMark
+  * Currently only `flavor: :redcarpet` is supported
+
 ## v1.1.0 - 2017/08/24
 
 https://github.com/bitjourney/mato/compare/v1.0.3...v1.1.0
