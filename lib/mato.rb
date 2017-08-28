@@ -4,6 +4,7 @@
 require_relative "./mato/version"
 require_relative "./mato/config"
 require_relative "./mato/processor"
+require_relative "./mato/converter"
 
 # filter classes
 require_relative "./mato/html_filters/token_link"

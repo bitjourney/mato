@@ -9,18 +9,17 @@ module Mato
   module HtmlFilters
     class BareInlineElement
       STANDALONE_INLINE_ELEMENTS = Set.new([
-        "img",
-        "input",
-        "textarea",
-      ])
+                                             "img",
+                                             "input",
+                                             "textarea",
+                                           ])
 
       def call(doc)
         doc.children.each do |node|
-          if STANDALONE_INLINE_ELEMENTS.include?(node.name)
-            parent = Nokogiri::HTML.fragment('<p/>')
-            parent.child.add_child(node.dup)
-            node.replace(parent)
-          end
+          next unless STANDALONE_INLINE_ELEMENTS.include?(node.name)
+          parent = Nokogiri::HTML.fragment('<p/>')
+          parent.child.add_child(node.dup)
+          node.replace(parent)
         end
       end
     end
