@@ -5,7 +5,7 @@ require_relative '../test_helper'
 class MentionLinkTest < FilterTest
 
   class User < Struct.new(:account)
-    VALID_ACCOUNTS = %w(valid)
+    VALID_ACCOUNTS = %w(valid _-valid)
 
     # @return [Enumerable<User>]
     def self.where(account:)
@@ -28,7 +28,7 @@ class MentionLinkTest < FilterTest
   end
 
   def test_mention_filter_for_valid
-    assert_html_eq process('@valid').render_html, %{<p><a href="https://twitter.com/@valid" class="mention">@valid</a></p>\n}
+    assert_html_eq process('@_-valid').render_html, %{<p><a href="https://twitter.com/@_-valid" class="mention">@_-valid</a></p>\n}
   end
 
   def test_mention_filter_for_multiple_valid_accounts
