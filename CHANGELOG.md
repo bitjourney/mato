@@ -1,8 +1,8 @@
 # The revision history of Mato
 
-## v1.2.1 - 2017/08/31
+## v1.2.2 - 2017/08/31
 
-https://github.com/bitjourney/mato/compare/v1.2.0...v1.2.1
+https://github.com/bitjourney/mato/compare/v1.2.0...v1.2.2
 
 * Add hyphen(-) to MENTION_PATTERN [#8](https://github.com/bitjourney/mato/pull/8)
 
