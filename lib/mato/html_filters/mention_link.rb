@@ -13,7 +13,7 @@ module Mato
       # @return [Proc]
       attr_reader :link_builder
 
-      MENTION_PATTERN = /\@[a-zA-Z0-9_]+\b/ # e.g. @foo
+      MENTION_PATTERN = /\@[a-zA-Z0-9_\-]+\b/ # e.g. @foo
 
       # @param [Regexp] pattern
       # @param [Proc] link_builder A block that takes Hash<String, Array<Nokogiri::XML::Node>>
