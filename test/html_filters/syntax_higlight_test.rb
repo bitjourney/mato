@@ -19,6 +19,15 @@ class SyntaxHighlightTest < FilterTest
     assert { subject.guess_lexer(nil, nil, %{#!/usr/bin/env node\n}).tag == 'javascript' }
   end
 
+  def test_guess_lexer_for_ambiguous_filename
+    # .pl is perl or prolog
+    assert { subject.guess_lexer(nil, 'foo.pl', '').tag == 'perl' }
+  end
+
+  def test_guess_lexer_for_unknown_file
+    assert { subject.guess_lexer(nil, 'unknown', '').tag == 'plaintext' }
+  end
+
   def test_parse_label
     assert { subject.parse_label(nil) == {} }
     assert { subject.parse_label('ruby:foo.rb') == { language: 'ruby', filename: 'foo.rb' } }

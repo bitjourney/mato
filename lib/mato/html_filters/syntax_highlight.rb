@@ -24,13 +24,7 @@ module Mato
           return lexer.new
         end
 
-        lexers = Rouge::Lexer.guesses(filename: filename, source: source)
-
-        if lexers.empty?
-          Rouge::Lexers::PlainText.new
-        else
-          lexers.first.new
-        end
+        Rouge::Lexer.guess(filename: filename, source: source, &:first).new
       end
 
       # @param [String,nil] CSS class names, e.g. "foo.js" "ruby:foo.rb"
