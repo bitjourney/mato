@@ -1,4 +1,4 @@
-# Mato [![Build Status](https://travis-ci.org/bitjourney/mato.svg?branch=master)](https://travis-ci.org/bitjourney/mato)
+# Mato [![Build Status](https://travis-ci.org/bitjourney/mato.svg?branch=master)](https://travis-ci.org/bitjourney/mato) [![Gem Version](https://badge.fury.io/rb/mato.svg)](https://badge.fury.io/rb/mato)
 
 **Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible, pipeline-based markdown processing toolkit, inspired by [HTML::Pipeline](https://github.com/jch/html-pipeline).
 
