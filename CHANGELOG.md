@@ -1,10 +1,16 @@
 # The revision history of Mato
 
+## v1.3.3 - 2017/09/22
+
+https://github.com/bitjourney/mato/compare/v1.2.2...1.2.3
+
+* Requires rouge v3.0.0 or later with simpler code [#9](https://github.com/bitjourney/mato/pull/9)
+
 ## v1.2.2 - 2017/08/31
 
 https://github.com/bitjourney/mato/compare/v1.2.0...v1.2.2
 
-* Add hyphen(-) to MENTION_PATTERN [#8](https://github.com/bitjourney/mato/pull/8)
+* Added hyphen(-) to MENTION_PATTERN [#8](https://github.com/bitjourney/mato/pull/8)
 
 ## v1.2.0 - 2017/08/28
 
