@@ -122,6 +122,28 @@ end
 mato.process("Hello!").render_html # "<p>HELLO!</p>\n"
 ```
 
+### Timeout
+
+There is `timeout` option to kill filters in a specified time in seconds:
+
+```ruby
+mato = Mato.define do |config|
+  config.append_html_filter(FooFilter, timeout: timeout_in_sec, on_timeout: callback)
+end
+```
+
+If you set `on_error` callback, you can omit `on_timeout` callback.
+
+### Errors in Filters
+
+There is `on_error` callback to rescue errors in filters:
+
+```ruby
+mato = Mato.define do |config|
+  config.append_html_filter(FooFilter, on_error: callback)
+end
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
