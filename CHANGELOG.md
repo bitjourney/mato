@@ -1,6 +1,13 @@
 # The revision history of Mato
 
-## v1.3.3 - 2017/09/22
+## v1.3.0 - 2017/09/26
+
+https://github.com/bitjourney/mato/compare/v1.2.3...1.3.0
+
+* Added `timeout:`, `on_timeout:` and `on_error:` options to `append_*_filter` [#10](https://github.com/bitjourney/mato/pull/10)
+
+
+## v1.2.3 - 2017/09/22
 
 https://github.com/bitjourney/mato/compare/v1.2.2...1.2.3
 
