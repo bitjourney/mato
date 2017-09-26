@@ -15,6 +15,9 @@ Lint/AmbiguousBlockAssociation:
 Lint/ScriptPermission:
   Enabled: false
 
+Lint/RescueWithoutErrorClass:
+  Enabled: false
+
 Layout/MultilineMethodCallIndentation:
   Enabled: false
 
@@ -22,7 +25,7 @@ Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 32
+  Max: 35
 
 Metrics/PerceivedComplexity:
   Max: 10
@@ -57,7 +60,7 @@ Style/CommentAnnotation:
 Style/Documentation:
   Enabled: false
 
-Style/FileName:
+Naming/FileName:
   Enabled: false
 
 Style/GuardClause:
@@ -114,13 +117,13 @@ Style/AsciiComments:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
-Style/VariableNumber:
+Naming/VariableNumber:
   Enabled: false
 
-Style/PredicateName:
+Naming/PredicateName:
   Enabled: false
 
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
   Enabled: false
 
 Style/YodaCondition:
@@ -133,6 +136,9 @@ Style/MultipleComparison:
   Enabled: false
 
 Style/StructInheritance:
+  Enabled: false
+
+Style/NonNilCheck:
   Enabled: false
 
 Performance/RedundantBlockCall:

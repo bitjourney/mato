@@ -16,7 +16,6 @@ module Mato
       unless on_timeout
         raise ArgumentError, "Missing on_timeout callback"
       end
-
     end
 
     def call(content)
