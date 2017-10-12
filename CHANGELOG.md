@@ -1,5 +1,12 @@
 # The revision history of Mato
 
+## v1.3.1 - 2017/10/12
+
+https://github.com/bitjourney/mato/compare/v1.3.0...v1.3.1
+
+
+* Exclude `example/` from the package not to confuse RubyMine
+
 ## v1.3.0 - 2017/09/26
 
 https://github.com/bitjourney/mato/compare/v1.2.3...v1.3.0
