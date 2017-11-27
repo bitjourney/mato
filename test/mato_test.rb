@@ -42,4 +42,27 @@ class MatoTest < MyTest
       new_doc.render_html == "<p>Hi!</p>\n"
     end
   end
+
+  def test_footnotes
+    doc = mato.process(<<~MARKDOWN)
+      This is some text.[^1]. Other text.[^footnote].
+
+      [^other-note]:  Hi!
+
+      [^1]: Some *bolded* footnote definition.
+    MARKDOWN
+
+    assert do
+      doc.render_html == <<~'HTML'
+        <p>This is some text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>. Other text.[^footnote].</p>
+        <section class="footnotes">
+        <ol>
+        <li id="fn1">
+        <p>Some <em>bolded</em> footnote definition. <a href="#fnref1" class="footnote-backref">↩</a></p>
+        </li>
+        </ol>
+        </section>
+      HTML
+    end
+  end
 end
