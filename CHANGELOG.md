@@ -1,5 +1,12 @@
 # The revision history of Mato
 
+## v2.0.0 - 2017/11/27
+
+https://github.com/bitjourney/mato/compare/v1.3.1...v2.0.0
+
+* Enable kramdown-style footnotes which is an extension in github/cmark [#11](https://github.com/bitjourney/mato/pull/11)
+
+
 ## v1.3.1 - 2017/10/12
 
 https://github.com/bitjourney/mato/compare/v1.3.0...v1.3.1
