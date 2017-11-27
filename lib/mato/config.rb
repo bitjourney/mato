@@ -10,6 +10,7 @@ module Mato
     DEFAULT_MARKDOWN_PARSE_OPTIONS = %i[
       DEFAULT
       VALIDATE_UTF8
+      FOOTNOTES
     ].freeze
 
     # https://github.com/gjtorikian/commonmarker#render-options
