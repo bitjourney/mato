@@ -15,9 +15,6 @@ Lint/AmbiguousBlockAssociation:
 Lint/ScriptPermission:
   Enabled: false
 
-Lint/RescueWithoutErrorClass:
-  Enabled: false
-
 Layout/MultilineMethodCallIndentation:
   Enabled: false
 
@@ -49,6 +46,9 @@ Metrics/ModuleLength:
   Enabled: false
 
 Metrics/ParameterLists:
+  Enabled: false
+
+Style/RescueStandardError:
   Enabled: false
 
 Style/BlockDelimiters:

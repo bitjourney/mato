@@ -23,7 +23,7 @@ module Mato
             stack.push(h_level)
             s << %{<ul>\n}
           elsif h_level < stack.last
-            while  h_level < stack.last
+            while h_level < stack.last
               # keep the user-level stack top element (i.e. [0, #]) here
               if stack.size <= 2
                 s << %{</li>\n}
