@@ -1,5 +1,11 @@
 # The revision history of Mato
 
+## v2.0.1 - 2017/12/14
+
+https://github.com/bitjourney/mato/compare/v2.0.0...v2.0.1
+
+* fix ToC renderer to make consistent HTML from inconsistent headings [#12](https://github.com/bitjourney/mato/pull/12)
+
 ## v2.0.0 - 2017/11/27
 
 https://github.com/bitjourney/mato/compare/v1.3.1...v2.0.0
