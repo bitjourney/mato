@@ -10,6 +10,7 @@ module Mato
       ANCHOR_SELECTOR = "a.#{AnchorBuilder::CSS_CLASS_NAME}"
 
       # @param [Nokogiri::HTML::DocumentFragment] doc
+      # @return [String]
       def call(doc)
         s = +''
 
@@ -17,13 +18,22 @@ module Mato
 
         doc.css(H_SELECTOR).each do |hx|
           h_level = level(hx)
+
           if h_level > stack.last
             stack.push(h_level)
             s << %{<ul>\n}
           elsif h_level < stack.last
-            while stack.last > h_level
-              s << %{</li></ul>\n}
-              stack.pop
+            while h_level < stack.last
+              # keep the user-level stack top element (i.e. [0, #]) here
+              if stack.size <= 2
+                s << %{</li>\n}
+                stack.pop
+                stack.push(h_level)
+                break
+              else
+                s << %{</li></ul>\n}
+                stack.pop
+              end
             end
           else
             s << %{</li>\n}
@@ -49,6 +59,7 @@ module Mato
           end
         end
 
+        # roll up all the stack elements
         while stack.last != 0
           stack.pop
           s << %{</li></ul>\n}
@@ -60,6 +71,7 @@ module Mato
       private
 
       # @param [Nokogiri::XML::Node] node
+      # @return [Integer] 1 to 6
       def level(node)
         /\d+/.match(node.name)[0].to_i
       end

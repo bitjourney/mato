@@ -9,7 +9,7 @@ class HtmlTocRendererTest < MyTest
     @subject ||= Mato::Renderers::HtmlTocRenderer.new
   end
 
-  def test_simple
+  def test_valid_levels
     input = <<~'HTML'
       <h1>first</h1>
       <h2>second</h2>
@@ -29,6 +29,63 @@ class HtmlTocRendererTest < MyTest
     HTML
 
     assert_html_eq(subject.call(Nokogiri::HTML.fragment(input)), output)
+  end
+
+  def test_valid_levels_starting_2
+    input = <<~'HTML'
+      <h2>second</h2>
+      <h2>second</h2>
+      <h5>fifth</h5>
+      <h2>second</h2>
+    HTML
+
+    output = <<~'HTML'
+      <ul>
+      <li>second</li>
+      <li>second<ul>
+      <li>fifth</li></ul>
+      <li>second</li></ul>
+    HTML
+
+    assert_html_eq(subject.call(Nokogiri::HTML.fragment(input)), output)
+  end
+
+  def test_inconsistent_levels
+    input = <<~'HTML'
+      <h2>second</h2>
+      <h1>first</h1>
+      <h2>second</h2>
+    HTML
+
+    output = <<~'HTML'
+      <ul>
+      <li>second</li>
+      <li>first<ul>
+      <li>second</li></ul>
+      </li></ul>
+    HTML
+
+    assert_html_eq(subject.call(Nokogiri::XML.fragment(input)), output)
+  end
+
+  def test_inconsistent_levels_more
+    input = <<~'HTML'
+      <h3>third</h3>
+      <h2>second</h2>
+      <h1>first</h1>
+      <h2>second</h2>
+    HTML
+
+    output = <<~'HTML'
+      <ul>
+      <li>third</li>
+      <li>second</li>
+      <li>first<ul>
+      <li>second</li></ul>
+      </li></ul>
+    HTML
+
+    assert_html_eq(subject.call(Nokogiri::XML.fragment(input)), output)
   end
 
   def test_with_links
