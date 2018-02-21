@@ -17,6 +17,7 @@ module Mato
     DEFAULT_MARKDOWN_RENDER_OPTIONS = [
       :DEFAULT,
       :HARDBREAKS, # convert "\n" as <br/>
+      :TABLE_PREFER_STYLE_ATTRIBUTES,
       # :SOURCEPOS, // TODO: enable it after assertions are supported
     ].freeze
 
