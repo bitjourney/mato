@@ -2,7 +2,7 @@
 
 ## v2.1.0 - 2018/02/21
 
-https://github.com/bitjourney/mato/compare/v2.0.1...v2.10
+https://github.com/bitjourney/mato/compare/v2.0.1...v2.1.0
 
 * Enable `:TABLE_PREFER_STYLE_ATTRIBUTE` added in CommonMarker v0.17.8 [#13](https://github.com/bitjourney/mato/pull/13)
 
