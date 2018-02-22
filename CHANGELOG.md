@@ -1,5 +1,11 @@
 # The revision history of Mato
 
+## v2.1.1 - 2018/02/22
+
+https://github.com/bitjourney/mato/compare/v2.1.0...v2.1.1
+
+* Fix language detection in fenced code blocks [#14](https://github.com/bitjourney/mato/pull/14)
+
 ## v2.1.0 - 2018/02/21
 
 https://github.com/bitjourney/mato/compare/v2.0.1...v2.1.0
