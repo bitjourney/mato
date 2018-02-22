@@ -17,6 +17,7 @@ class SyntaxHighlightTest < FilterTest
     assert { subject.guess_lexer('js', nil, '').tag == 'javascript' }
     assert { subject.guess_lexer(nil, 'foo.js', '').tag == 'javascript' }
     assert { subject.guess_lexer(nil, nil, %{#!/usr/bin/env node\n}).tag == 'javascript' }
+    assert { subject.guess_lexer('diff', 'config.yml', '').tag == 'diff' }
   end
 
   def test_guess_lexer_for_ambiguous_filename
@@ -98,6 +99,24 @@ class SyntaxHighlightTest < FilterTest
       <pre class="highlight"><code data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
       <span class="nb">p</span> <span class="s2">"Hello, world!"</span>
       </code></pre>
+      </div>
+    HTML
+  end
+
+  def test_call_with_lang_filname_pair_with_diferent_attrs
+    markdown = <<~'MD'
+      ```diff:foo.rb
+      - p "Hello, world!"
+      + puts "Hello, world!"
+      ````
+    MD
+
+    assert_html_eq(highlight(markdown), <<~'HTML')
+      <div class="code-frame">
+      <div class="code-label">foo.rb</div>
+      <pre class="highlight"><code data-lang="diff"><span class="gd">- p "Hello, world!"
+      </span><span class="gi">+ puts "Hello, world!"
+      </span></code></pre>
       </div>
     HTML
   end

@@ -51,7 +51,7 @@ module Mato
       def highlight(pre)
         code = pre.at('code')
         metadata = parse_label(code['class'])
-        language = metadata[:language]
+        language = metadata[:language]&.sub(/^language-/, '')
         filename = metadata[:filename]
         source = code.inner_text
 
