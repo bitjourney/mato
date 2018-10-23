@@ -18,6 +18,7 @@ module Mato
       :DEFAULT,
       :HARDBREAKS, # convert "\n" as <br/>
       :TABLE_PREFER_STYLE_ATTRIBUTES,
+      :UNSAFE,
       # :SOURCEPOS, // TODO: enable it after assertions are supported
     ].freeze
 

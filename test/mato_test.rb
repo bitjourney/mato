@@ -54,7 +54,7 @@ class MatoTest < MyTest
 
     assert do
       doc.render_html == <<~'HTML'
-        <p>This is some text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>. Other text.[^footnote].</p>
+        <p>This is some text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>. Other text.[^footnote].</p>
         <section class="footnotes">
         <ol>
         <li id="fn1">
