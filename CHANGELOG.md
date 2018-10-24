@@ -1,5 +1,11 @@
 # The revision history of Mato
 
+## v2.1.2 - 2018/10/23
+
+https://github.com/bitjourney/mato/compare/v2.1.1...v2.1.2
+
+* Add UNSAFE to DEFAULT_MARKDOWN_RENDER_OPTIONS
+
 ## v2.1.1 - 2018/02/22
 
 https://github.com/bitjourney/mato/compare/v2.1.0...v2.1.1
