@@ -44,7 +44,13 @@ module Mato
     end
 
     def make_anchor_id_prefix(text)
-      ERB::Util.url_encode(text.downcase.gsub(/[^\p{Word}\- ]/u, "").tr(" ", "-"))
+      prefix = ERB::Util.url_encode(text.downcase.gsub(/[^\p{Word}\- ]/u, "").tr(" ", "-"))
+
+      if prefix.empty?
+        "user-content"
+      else
+        prefix
+      end
     end
   end
 end

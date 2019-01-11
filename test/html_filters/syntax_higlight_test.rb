@@ -22,7 +22,10 @@ class SyntaxHighlightTest < FilterTest
 
   def test_guess_lexer_for_ambiguous_filename
     # .pl is perl or prolog
-    assert { subject.guess_lexer(nil, 'foo.pl', '').tag == 'perl' }
+    assert do
+      tag = subject.guess_lexer(nil, 'foo.pl', '').tag
+      tag == "perl" || tag == "prolog"
+    end
   end
 
   def test_guess_lexer_for_unknown_file
