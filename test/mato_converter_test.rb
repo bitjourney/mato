@@ -20,34 +20,34 @@ class MatoConverterTest < MyTest
           #foo
           ```
           #bar
-            MD
+        MD
 
         <<~'MD',
           ```
           #foo
           ```
           # bar
-            MD
+        MD
       ],
       [
         <<~'MD',
           * #foo
            * #bar
-            MD
+        MD
 
         <<~'MD',
           * #foo
            * #bar
-            MD
+        MD
       ],
       [
         <<~'MD',
           <p>#foo</p>
-          MD
+        MD
 
         <<~'MD',
           <p>#foo</p>
-          MD
+        MD
       ],
       [
         <<~'MD',
@@ -55,14 +55,14 @@ class MatoConverterTest < MyTest
           ##bar
           #baz
           yey!
-            MD
+        MD
 
         <<~'MD',
           # foo
           ## bar
           # baz
           yey!
-            MD
+        MD
       ],
       [
         <<-'MD', # keep indent in contents
@@ -70,23 +70,23 @@ class MatoConverterTest < MyTest
               ##bar
               #baz
               yey!
-            MD
+        MD
 
         <<-'MD', # keep indent in contents
               #foo
               ##bar
               #baz
               yey!
-            MD
+        MD
       ],
       [
         <<~'MD',
           #foo *#bar* #baz
-          MD
+        MD
 
         <<~'MD',
           # foo *#bar* #baz
-          MD
+        MD
       ],
     ]
   end

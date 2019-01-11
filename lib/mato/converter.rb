@@ -48,7 +48,7 @@ module Mato
           node.sourcepos[:start_column] == 1 &&
           node.parent.type == :paragraph &&
           node.parent.parent.type == :document
-      end.reverse.each do |node|
+      end.reverse_each do |node|
         replacement = node.string_content.gsub(/\A(#+)(?=\S)/, '\1 ')
 
         if node.string_content != replacement

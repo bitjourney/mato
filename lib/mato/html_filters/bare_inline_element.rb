@@ -17,6 +17,7 @@ module Mato
       def call(doc)
         doc.children.each do |node|
           next unless STANDALONE_INLINE_ELEMENTS.include?(node.name)
+
           parent = Nokogiri::HTML.fragment('<p/>')
           parent.child.add_child(node.dup)
           node.replace(parent)
