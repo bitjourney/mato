@@ -1,5 +1,11 @@
 # The revision history of Mato
 
+## v2.1.3 - 2019/1/15
+
+https://github.com/bitjourney/mato/compare/v2.1.2...v2.1.3
+
+* Fix anchor in case of heading which is only special characters
+
 ## v2.1.2 - 2018/10/23
 
 https://github.com/bitjourney/mato/compare/v2.1.1...v2.1.2
