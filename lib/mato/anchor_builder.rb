@@ -47,7 +47,7 @@ module Mato
       prefix = ERB::Util.url_encode(text.downcase.gsub(/[^\p{Word}\- ]/u, "").tr(" ", "-"))
 
       if prefix.empty?
-        "user-content"
+        "user-content" # GitHub compatible
       else
         prefix
       end
