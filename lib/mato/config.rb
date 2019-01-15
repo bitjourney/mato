@@ -80,16 +80,19 @@ module Mato
 
     def append_text_filter(text_filter, timeout: nil, on_timeout: nil, on_error: nil)
       raise "text_filter must respond to call()" unless text_filter.respond_to?(:call)
+
       text_filters.push(wrap(text_filter, timeout: timeout, on_timeout: on_timeout, on_error: on_error))
     end
 
     def append_markdown_filter(markdown_filter, timeout: nil, on_timeout: nil, on_error: nil)
       raise "markdown_filter must respond to call()" unless markdown_filter.respond_to?(:call)
+
       markdown_filters.push(wrap(markdown_filter, timeout: timeout, on_timeout: on_timeout, on_error: on_error))
     end
 
     def append_html_filter(html_filter, timeout: nil, on_timeout: nil, on_error: nil)
       raise "html_filter must respond to call()" unless html_filter.respond_to?(:call)
+
       html_filters.push(wrap(html_filter, timeout: timeout, on_timeout: on_timeout, on_error: on_error))
     end
 
