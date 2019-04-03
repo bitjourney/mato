@@ -18,7 +18,7 @@ class MatoTimeoutTest < MyTest
     end
 
     assert do
-      timeout != nil
+      timeout.is_a?(Timeout::Error)
     end
   end
 
@@ -37,7 +37,7 @@ class MatoTimeoutTest < MyTest
     end
 
     assert do
-      timeout != nil
+      timeout.is_a?(Timeout::Error)
     end
   end
 end
