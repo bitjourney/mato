@@ -1,5 +1,11 @@
 # The revision history of Mato
 
+## v2.1.4 - 2019/4/11
+
+https://github.com/bitjourney/mato/compare/v2.1.3...v2.1.4
+
+* Fix broken mention link process in case of including unexpected text
+
 ## v2.1.3 - 2019/1/15
 
 https://github.com/bitjourney/mato/compare/v2.1.2...v2.1.3
