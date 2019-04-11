@@ -52,6 +52,8 @@ module Mato
           # cleanup
           candidates.each do |candidate_fragment|
             candidate_fragment.css('span.mention-candidate').each do |node|
+              next unless node.child
+
               node.replace(node.child.content)
             end
           end
