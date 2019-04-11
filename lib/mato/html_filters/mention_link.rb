@@ -37,7 +37,9 @@ module Mato
           next if text_node.content == candidate_html
 
           candidate_fragment = text_node.replace(candidate_html)
-          candidate_fragment.css('span').each do |mention_element|
+          candidate_fragment.css('span.mention-candidate').each do |mention_element|
+            next unless mention_element.child
+
             (candidate_map[mention_element.child.content] ||= []) << mention_element
           end
 
@@ -50,6 +52,8 @@ module Mato
           # cleanup
           candidates.each do |candidate_fragment|
             candidate_fragment.css('span.mention-candidate').each do |node|
+              next unless node.child
+
               node.replace(node.child.content)
             end
           end

@@ -56,4 +56,14 @@ class MentionLinkTest < FilterTest
   def test_mention_filter_for_valid_in_pre
     assert_html_eq process('<pre>@valid</pre>').render_html, %{<pre>@valid</pre>\n}
   end
+
+  def test_mention_filder_for_include_escaped_span_class
+    assert_html_eq process('@valid\<span\>\<\/span\>').render_html,
+                   %{<p><a href="https://twitter.com/@valid" class="mention">@valid</a><span></span></p>\n}
+  end
+
+  def test_mention_filder_for_include_escaped_span_class_with_mention_candidate_class
+    assert_html_eq process('@valid\<span class="mention-candidate"\>\<\/span\>').render_html,
+                   %{<p><a href="https://twitter.com/@valid" class="mention">@valid</a><span class="mention-candidate"></span></p>\n}
+  end
 end
