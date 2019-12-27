@@ -1,4 +1,6 @@
 # See also https://github.com/onk/onkcop/blob/master/config/rubocop.yml
+require:
+  - rubocop-performance
 
 AllCops:
   TargetRubyVersion: 2.3
@@ -36,7 +38,7 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
