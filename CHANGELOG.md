@@ -1,5 +1,12 @@
 # The revision history of Mato
 
+## v2.2.0 - 2020/05/08
+
+https://github.com/bitjourney/mato/compare/v2.1.4...v2.2.0
+
+* Display code block as plan text if Rouge raises an error [#21](https://github.com/bitjourney/mato/pull/21)
+
+
 ## v2.1.4 - 2019/4/11
 
 https://github.com/bitjourney/mato/compare/v2.1.3...v2.1.4
