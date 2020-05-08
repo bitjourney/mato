@@ -6,6 +6,7 @@ require 'mato'
 
 require 'minitest/autorun'
 require 'minitest/power_assert'
+require 'rr'
 
 class MyTest < MiniTest::Test
   include Minitest::PowerAssert::Assertions

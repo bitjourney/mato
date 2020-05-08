@@ -5,6 +5,12 @@
 module Mato
   module HtmlFilters
     class SyntaxHighlight
+      class RougeError < StandardError
+      end
+
+      def initialize(on_rouge_error: ->(ex) { warn ex })
+        @on_rouge_error = on_rouge_error
+      end
 
       # @param [Nokogiri::HTML::DocumentFragment] doc
       def call(doc)
@@ -57,11 +63,21 @@ module Mato
 
         lexer = guess_lexer(language, filename, source)
 
-        document = Nokogiri::HTML.fragment(%{<div class="code-frame"/>})
-
-        div = document.at('div')
-        div.add_child(label_fragment(filename || language || lexer.tag)) if filename || !lexer.is_a?(Rouge::Lexers::PlainText)
-        div.add_child(%{<pre class="highlight"><code data-lang="#{lexer.tag}">#{format(lexer, source)}</code></pre>})
+        begin
+          document = Nokogiri::HTML.fragment(%{<div class="code-frame"/>})
+          div = document.at('div')
+          div.add_child(label_fragment(filename || language || lexer.tag)) if filename || !lexer.is_a?(Rouge::Lexers::PlainText)
+          div.add_child(%{<pre class="highlight"><code data-lang="#{lexer.tag}">#{format(lexer, source)}</code></pre>})
+        rescue => ex
+          if ex.is_a?(RougeError) && !lexer.is_a?(Rouge::Lexers::PlainText)
+            # Retry highlighting with PlainText lexer if Rouge raises an error.
+            # It avoids to affect the error to whole of converting.
+            lexer = Rouge::Lexers::PlainText.new
+            retry
+          else
+            raise ex
+          end
+        end
 
         document
       end
@@ -79,6 +95,9 @@ module Mato
       def format(lexer, source)
         tokens = lexer.lex(source)
         formatter.format(tokens)
+      rescue => ex
+        @on_rouge_error.call(ex)
+        raise RougeError.new
       end
     end
   end

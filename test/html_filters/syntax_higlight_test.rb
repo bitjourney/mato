@@ -123,4 +123,31 @@ class SyntaxHighlightTest < FilterTest
       </div>
     HTML
   end
+
+  def test_call_with_rouge_error
+    markdown = <<~'MD'
+      ```ruby
+      puts "hello"
+      ```
+    MD
+
+    any_instance_of(Rouge::Lexers::Ruby) do |klass|
+      stub(klass).lex { raise "Error!" }
+    end
+
+    begin
+      stderr = StringIO.new
+      $stderr = stderr
+      got = highlight(markdown)
+    ensure
+      $stderr = STDERR
+    end
+
+    assert_html_eq(got, <<~'HTML')
+      <div class="code-frame"><pre class="highlight"><code data-lang="plaintext">puts "hello"
+      </code></pre></div>
+    HTML
+
+    assert_equal "Error!\n", stderr.string
+  end
 end
