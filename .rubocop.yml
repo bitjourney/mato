@@ -3,10 +3,13 @@ require:
   - rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
   DisplayCopNames: true
   Exclude:
     - bin/**/*
+
+Metrics:
+  Enabled: false
 
 Lint/UnusedBlockArgument:
   Enabled: false
@@ -23,31 +26,7 @@ Layout/MultilineMethodCallIndentation:
 Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
-Metrics/AbcSize:
-  Max: 35
-
-Metrics/PerceivedComplexity:
-  Max: 10
-
-Metrics/CyclomaticComplexity:
-  Max: 10
-
-Metrics/ClassLength:
-  Enabled: false
-
-Metrics/BlockLength:
-  Enabled: false
-
 Layout/LineLength:
-  Enabled: false
-
-Metrics/MethodLength:
-  Max: 45
-
-Metrics/ModuleLength:
-  Enabled: false
-
-Metrics/ParameterLists:
   Enabled: false
 
 Style/RescueStandardError:
@@ -63,6 +42,12 @@ Style/Documentation:
   Enabled: false
 
 Naming/FileName:
+  Enabled: false
+
+Naming/MethodParameterName:
+  Enabled: false
+
+Naming/RescuedExceptionsVariableName:
   Enabled: false
 
 Style/GuardClause:
@@ -122,6 +107,9 @@ Style/AsciiComments:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
+Style/RaiseArgs:
+  Enabled: false
+
 Naming/VariableNumber:
   Enabled: false
 
@@ -148,3 +136,20 @@ Style/NonNilCheck:
 
 Performance/RedundantBlockCall:
   Enabled: false
+
+# Configure pending cops
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true

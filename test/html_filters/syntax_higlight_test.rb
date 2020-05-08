@@ -135,7 +135,6 @@ class SyntaxHighlightTest < FilterTest
       stub(klass).lex { raise "Error!" }
     end
 
-
     begin
       stderr = StringIO.new
       $stderr = stderr

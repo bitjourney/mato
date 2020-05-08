@@ -8,7 +8,7 @@ module Mato
       class RougeError < StandardError
       end
 
-      def initialize(on_rouge_error: -> (ex) { warn ex })
+      def initialize(on_rouge_error: ->(ex) { warn ex })
         @on_rouge_error = on_rouge_error
       end
 

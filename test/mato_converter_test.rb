@@ -8,7 +8,7 @@ class MatoConverterTest < MyTest
     end
   end
 
-  def patterns # rubocop:disable Metrics/MethodLength
+  def patterns
     [
       ['#Hello, world!', '# Hello, world!'],
       ['##Hello, world!', '## Hello, world!'],
