@@ -13,6 +13,11 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/bitjourney/mato"
   spec.license       = "MIT"
 
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = 'https://github.com/bitjourney/mato/blob/master/CHANGELOG.md'
+  spec.metadata['bug_tracker_uri'] = 'https://github.com/bitjourney/mato/issues'
+
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(?:test|spec|features|example)/})
   end
