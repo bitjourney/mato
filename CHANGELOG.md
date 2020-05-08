@@ -4,6 +4,7 @@
 
 https://github.com/bitjourney/mato/compare/v2.1.4...v2.2.0
 
+* BREAKING: Drop support for Ruby 2.3
 * Display code block as plan text if Rouge raises an error [#21](https://github.com/bitjourney/mato/pull/21)
 
 
