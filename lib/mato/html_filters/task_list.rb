@@ -3,15 +3,18 @@
 module Mato
   module HtmlFilters
     class TaskList
-      CHECKED_MARK = "[x] "
-      UNCHECKED_MARK = "[ ] "
+      CHECKED_MARK = /\A\[x\] /
+      UNCHECKED_MARK = /\A\[ \] /
+      CHECKED_MARK_FOR_EMPTY_TASK_LIST = /\A\[x\] ?/
+      UNCHECKED_MARK_FOR_EMPTY_TASK_LIST = /\A\[ \] ?/
 
       DEFAULT_TASK_LIST_CLASS = "task-list-item"
       DEFAULT_CHECKBOX_CLASS = "task-list-item-checkbox"
 
-      def initialize(task_list_class: DEFAULT_TASK_LIST_CLASS, checkbox_class: DEFAULT_CHECKBOX_CLASS)
+      def initialize(task_list_class: DEFAULT_TASK_LIST_CLASS, checkbox_class: DEFAULT_CHECKBOX_CLASS, convert_empty_task_list: false)
         @task_list_class = task_list_class
         @checkbox_class = checkbox_class
+        @convert_empty_task_list = convert_empty_task_list
       end
 
       # @param [Nokogiri::HTML::DocumentFragment] doc
@@ -37,18 +40,34 @@ module Mato
       end
 
       def has_checked_mark?(text_node)
-        text_node&.content&.start_with?(CHECKED_MARK)
+        text_node&.content&.match?(checked_mark)
       end
 
       def has_unchecked_mark?(text_node)
-        text_node&.content&.start_with?(UNCHECKED_MARK)
+        text_node&.content&.match?(unchecked_mark)
       end
 
       def trim_mark(content, checked)
         if checked
-          content.sub(CHECKED_MARK, '')
+          content.sub(checked_mark, '')
         else
-          content.sub(UNCHECKED_MARK, '')
+          content.sub(unchecked_mark, '')
+        end
+      end
+
+      def checked_mark
+        if @convert_empty_task_list
+          CHECKED_MARK_FOR_EMPTY_TASK_LIST
+        else
+          CHECKED_MARK
+        end
+      end
+
+      def unchecked_mark
+        if @convert_empty_task_list
+          UNCHECKED_MARK_FOR_EMPTY_TASK_LIST
+        else
+          UNCHECKED_MARK
         end
       end
 
