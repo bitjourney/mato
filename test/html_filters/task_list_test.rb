@@ -27,4 +27,26 @@ class TaskListTest < FilterTest
 
     assert_html_eq(mato.process(input).render_html, output)
   end
+
+  def test_empty_task_list
+    # NOTE: The following markdown has trailing spaces on purpose.
+    #       Do NOT remove them!
+    input = <<~'MARKDOWN'
+      * [ ]
+      * [x]
+      * [ ] 
+      * [x] 
+    MARKDOWN
+
+    output = <<~'HTML'
+      <ul>
+      <li>[ ]</li>
+      <li>[x]</li>
+      <li>[ ]</li>
+      <li>[x]</li>
+      </ul>
+    HTML
+
+    assert_html_eq(mato.process(input).render_html, output)
+  end
 end
