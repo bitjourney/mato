@@ -8,7 +8,7 @@ class TaskListTest < FilterTest
     Mato::HtmlFilters::TaskList.new
   end
 
-  def test_simle
+  def test_simple
     input = <<~'MARKDOWN'
       * [ ] foo
       * [x] bar
