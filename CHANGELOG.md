@@ -1,5 +1,9 @@
 # The revision history of Mato
 
+## v2.3.0 - 2020/06/16
+
+* Add `convert_empty_task_list` option to TaskList filter to convert task list event if the text is empty. [#23](https://github.com/bitjourney/mato/pull/23)
+
 ## v2.2.0 - 2020/05/08
 
 https://github.com/bitjourney/mato/compare/v2.1.4...v2.2.0
