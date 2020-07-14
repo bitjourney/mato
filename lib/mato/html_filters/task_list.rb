@@ -26,7 +26,7 @@ module Mato
 
       # @param [Nokogiri::XML::Node] li
       def weave(li)
-        text_node = li.xpath('.//text()').first
+        text_node = li.xpath('./p[1]/text()').first || li.xpath('.//text()').first
         checked = has_checked_mark?(text_node)
         unchecked = has_unchecked_mark?(text_node)
 
