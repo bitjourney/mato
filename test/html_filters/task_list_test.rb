@@ -48,6 +48,32 @@ class TaskListTest < FilterTest
 
     assert_html_eq(mato.process(input).render_html, output)
   end
+
+  def test_loose
+    input = <<~'MARKDOWN'
+      * [ ] foo
+
+      * [x] bar
+
+      * baz
+    MARKDOWN
+
+    output = <<~'HTML'
+      <ul>
+      <li class="task-list-item">
+      <p><input type="checkbox" class="task-list-item-checkbox" disabled>foo</p>
+      </li>
+      <li class="task-list-item">
+      <p><input type="checkbox" class="task-list-item-checkbox" disabled checked>bar</p>
+      </li>
+      <li>
+      <p>baz</p>
+      </li>
+      </ul>
+    HTML
+
+    assert_html_eq(mato.process(input).render_html, output)
+  end
 end
 
 class TaskListEnableConvertEmptyTaskListOptionTest < FilterTest
@@ -95,6 +121,32 @@ class TaskListEnableConvertEmptyTaskListOptionTest < FilterTest
       <input type="checkbox" class="task-list-item-checkbox" disabled></li>
       <li class="task-list-item">
       <input type="checkbox" class="task-list-item-checkbox" disabled checked></li>
+      </ul>
+    HTML
+
+    assert_html_eq(mato.process(input).render_html, output)
+  end
+
+  def test_loose
+    input = <<~'MARKDOWN'
+      * [ ] foo
+
+      * [x] bar
+
+      * baz
+    MARKDOWN
+
+    output = <<~'HTML'
+      <ul>
+      <li class="task-list-item">
+      <p><input type="checkbox" class="task-list-item-checkbox" disabled>foo</p>
+      </li>
+      <li class="task-list-item">
+      <p><input type="checkbox" class="task-list-item-checkbox" disabled checked>bar</p>
+      </li>
+      <li>
+      <p>baz</p>
+      </li>
       </ul>
     HTML
 
