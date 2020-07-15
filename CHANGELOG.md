@@ -1,5 +1,9 @@
 # The revision history of Mato
 
+## v2.3.1 - 2020/07/15
+
+* Allow loose task list. [#24](https://github.com/bitjourney/mato/pull/24)
+
 ## v2.3.0 - 2020/06/16
 
 * Add `convert_empty_task_list` option to TaskList filter to convert task list event if the text is empty. [#23](https://github.com/bitjourney/mato/pull/23)
