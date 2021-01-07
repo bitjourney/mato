@@ -53,6 +53,11 @@ module Mato
           candidates.each do |candidate_fragment|
             candidate_fragment.css('span.mention-candidate').each do |node|
               next unless node.child
+              # If link_builder calls Node#replace for a node,
+              # the node's parent becames nil.
+              # Node#replace doesn't accept node that doesn't have parent since Nokogiri v1.11.0,
+              # so we need to skip it.
+              next unless node.parent
 
               node.replace(node.child.content)
             end
