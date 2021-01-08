@@ -1,5 +1,9 @@
 # The revision history of Mato
 
+## v2.3.2 - 2021/01/08
+
+* Fix error on mention link with Nokogiri v1.11.0+. [#26](https://github.com/bitjourney/mato/pull/26)
+
 ## v2.3.1 - 2020/07/15
 
 * Allow loose task list. [#24](https://github.com/bitjourney/mato/pull/24)
