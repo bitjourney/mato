@@ -149,5 +149,8 @@ class SyntaxHighlightTest < FilterTest
     HTML
 
     assert_equal "Error!\n", stderr.string
+
+    # Remove injected any_instance_of double for Rouge::Lexers::Ruby
+    RR::Injections::DoubleInjection.reset
   end
 end
