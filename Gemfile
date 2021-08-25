@@ -7,6 +7,7 @@ gemspec
 
 gem "sanitize", ">= 3.0"
 
+gem 'activesupport'
 gem "bundler", ">= 1.14"
 gem "m"
 gem "minitest"
@@ -15,4 +16,3 @@ gem "rake", ">= 10.0"
 gem 'rr'
 gem "rubocop", '>= 0.78.0'
 gem 'rubocop-performance'
-gem 'activesupport'
