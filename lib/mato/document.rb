@@ -6,19 +6,19 @@ require_relative './renderers/html_toc_renderer'
 # Intermediate document class, which instance is *serializable*.
 module Mato
   class Document
-    # @return [Nokogiri::HTML::DocumentFragment]
+    # @return [Nokogiri::HTML4::DocumentFragment]
     attr_reader :fragment
 
     def self.empty
-      new(Nokogiri::HTML.fragment(''))
+      new(Nokogiri::HTML4.fragment(''))
     end
 
-    # @param [Nokogiri::HTML::DocumentFragment] fragment
+    # @param [Nokogiri::HTML4::DocumentFragment] fragment
     def initialize(fragment)
       @fragment = fragment
     end
 
-    # @return [Nokogiri::HTML::DocumentFragment] A copy of fragment that are modified by html_filters
+    # @return [Nokogiri::HTML4::DocumentFragment] A copy of fragment that are modified by html_filters
     def apply_html_filters(*html_filters)
       new_fragment = fragment.dup
       html_filters.each do |html_filter|
@@ -58,7 +58,7 @@ module Mato
     end
 
     def marshal_load(data)
-      initialize(Nokogiri::HTML.fragment(data[:fragment]).freeze)
+      initialize(Nokogiri::HTML4.fragment(data[:fragment]).freeze)
     end
   end
 end

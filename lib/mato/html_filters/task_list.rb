@@ -17,7 +17,7 @@ module Mato
         @convert_empty_task_list = convert_empty_task_list
       end
 
-      # @param [Nokogiri::HTML::DocumentFragment] doc
+      # @param [Nokogiri::HTML4::DocumentFragment] doc
       def call(doc)
         doc.search("li").each do |li|
           weave(li)
@@ -72,7 +72,7 @@ module Mato
       end
 
       def build_checkbox_node(checked)
-        Nokogiri::HTML.fragment('<input type="checkbox"/>').tap do |fragment|
+        Nokogiri::HTML4.fragment('<input type="checkbox"/>').tap do |fragment|
           checkbox = fragment.children.first
           checkbox["class"] = @checkbox_class
           checkbox["disabled"] = 'disabled'

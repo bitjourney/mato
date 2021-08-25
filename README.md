@@ -108,7 +108,7 @@ mato.process("Hello!").render_html # "<p>HELLO!</p>\n"
 
 ### HTML Filters
 
-An HTML filter is a callable object that takes a ``Nokogiri::HTML::DocumentFragment`
+An HTML filter is a callable object that takes a ``Nokogiri::HTML4::DocumentFragment`
 and mutate it in the method. The return value is ignored.
 
 ```ruby

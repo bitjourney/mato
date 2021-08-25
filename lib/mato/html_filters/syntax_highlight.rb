@@ -12,7 +12,7 @@ module Mato
         @on_rouge_error = on_rouge_error
       end
 
-      # @param [Nokogiri::HTML::DocumentFragment] doc
+      # @param [Nokogiri::HTML4::DocumentFragment] doc
       def call(doc)
         doc.search("pre").each do |pre|
           if pre.at('code')
@@ -64,7 +64,7 @@ module Mato
         lexer = guess_lexer(language, filename, source)
 
         begin
-          document = Nokogiri::HTML.fragment(%{<div class="code-frame"/>})
+          document = Nokogiri::HTML4.fragment(%{<div class="code-frame"/>})
           div = document.at('div')
           div.add_child(label_fragment(filename || language || lexer.tag)) if filename || !lexer.is_a?(Rouge::Lexers::PlainText)
           div.add_child(%{<pre class="highlight"><code data-lang="#{lexer.tag}">#{format(lexer, source)}</code></pre>})
@@ -83,7 +83,7 @@ module Mato
       end
 
       def label_fragment(label)
-        Nokogiri::HTML.fragment(%{<div class="code-label"/>}).tap do |fragment|
+        Nokogiri::HTML4.fragment(%{<div class="code-label"/>}).tap do |fragment|
           fragment.at('div').add_child(Nokogiri::XML::Text.new(label, fragment))
         end
       end

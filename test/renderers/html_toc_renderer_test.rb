@@ -28,7 +28,7 @@ class HtmlTocRendererTest < MyTest
       <li>first</li></ul>
     HTML
 
-    assert_html_eq(subject.call(Nokogiri::HTML.fragment(input)), output)
+    assert_html_eq(subject.call(Nokogiri::HTML4.fragment(input)), output)
   end
 
   def test_valid_levels_starting_2
@@ -47,7 +47,7 @@ class HtmlTocRendererTest < MyTest
       <li>second</li></ul>
     HTML
 
-    assert_html_eq(subject.call(Nokogiri::HTML.fragment(input)), output)
+    assert_html_eq(subject.call(Nokogiri::HTML4.fragment(input)), output)
   end
 
   def test_inconsistent_levels
@@ -98,7 +98,7 @@ class HtmlTocRendererTest < MyTest
       <li>first</li></ul>
     HTML
 
-    fragment = Nokogiri::HTML.fragment(input)
+    fragment = Nokogiri::HTML4.fragment(input)
     expected_fragment = fragment.dup
     assert_html_eq(subject.call(fragment), output)
     assert_html_eq(fragment.to_s, expected_fragment.to_s)
@@ -114,7 +114,7 @@ class HtmlTocRendererTest < MyTest
       <li><img src="foo.png"></li></ul>
     HTML
 
-    fragment = Nokogiri::HTML.fragment(input)
+    fragment = Nokogiri::HTML4.fragment(input)
     expected_fragment = fragment.dup
     assert_html_eq(subject.call(fragment), output)
     assert_html_eq(fragment.to_s, expected_fragment.to_s)

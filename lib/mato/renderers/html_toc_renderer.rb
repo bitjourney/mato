@@ -9,7 +9,7 @@ module Mato
       H_SELECTOR = %w(h1 h2 h3 h4 h5 h6).join(',')
       ANCHOR_SELECTOR = "a.#{AnchorBuilder::CSS_CLASS_NAME}"
 
-      # @param [Nokogiri::HTML::DocumentFragment] doc
+      # @param [Nokogiri::HTML4::DocumentFragment] doc
       # @return [String]
       def call(doc)
         s = +''
