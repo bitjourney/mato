@@ -28,6 +28,6 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.4"
 
   spec.add_runtime_dependency "commonmarker", ">= 0.18.1"
-  spec.add_runtime_dependency "nokogiri", ">= 1.6"
+  spec.add_runtime_dependency "nokogiri", ">= 1.12"
   spec.add_runtime_dependency "rouge", ">= 3.0.0"
 end
