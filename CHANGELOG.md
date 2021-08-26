@@ -1,6 +1,6 @@
 # The revision history of Mato
 
-## v2.4.0(Unreleased) - 2021/08/25
+## v2.4.0 - 2021/08/25
 
 https://github.com/bitjourney/mato/compare/v2.3.2...v2.4.0
 
