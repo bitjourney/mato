@@ -18,7 +18,7 @@ module Mato
         doc.children.each do |node|
           next unless STANDALONE_INLINE_ELEMENTS.include?(node.name)
 
-          parent = Nokogiri::HTML.fragment('<p/>')
+          parent = Nokogiri::HTML4.fragment('<p/>')
           parent.child.add_child(node.dup)
           node.replace(parent)
         end

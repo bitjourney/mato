@@ -20,7 +20,7 @@ module Mato
         @builder = builder
       end
 
-      # @param [Nokogiri::HTML::DocumentFragment] doc
+      # @param [Nokogiri::HTML4::DocumentFragment] doc
       def call(doc)
         doc.xpath('.//text()').each do |text_node|
           next if has_ancestor?(text_node, 'a', 'code')

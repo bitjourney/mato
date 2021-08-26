@@ -12,7 +12,7 @@ module Mato
         @anchor_icon_element = anchor_icon_element
       end
 
-      # @param [Nokogiri::HTML::DocumentFragment] doc
+      # @param [Nokogiri::HTML4::DocumentFragment] doc
       def call(doc)
         anchor_builder = AnchorBuilder.new(@anchor_icon_element)
 

@@ -7,6 +7,7 @@ gemspec
 
 gem "sanitize", ">= 3.0"
 
+gem 'activesupport'
 gem "bundler", ">= 1.14"
 gem "m"
 gem "minitest"

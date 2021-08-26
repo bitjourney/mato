@@ -55,7 +55,7 @@ module Mato
     end
 
     # @param [String] html
-    # @return [Nokogiri::HTML::DocumentFragment]
+    # @return [Nokogiri::HTML4::DocumentFragment]
     def parse_html(html)
       config.html_parser.parse(html)
     end

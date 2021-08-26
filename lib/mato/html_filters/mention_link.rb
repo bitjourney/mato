@@ -22,7 +22,7 @@ module Mato
         @link_builder = link_builder
       end
 
-      # @param [Nokogiri::HTML::DocumentFragment] doc
+      # @param [Nokogiri::HTML4::DocumentFragment] doc
       def call(doc)
         candidate_map = {}
         candidates = []

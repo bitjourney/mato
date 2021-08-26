@@ -1,5 +1,12 @@
 # The revision history of Mato
 
+## v2.4.0(Unreleased) - 2021/08/25
+
+https://github.com/bitjourney/mato/compare/v2.3.2...v2.4.0
+
+* BREAKING: Drop support for Ruby 2.4, 2.5, and 2.6
+* Bump up minimum dependency of nokogiri to 1.12
+
 ## v2.3.2 - 2021/01/08
 
 * Fix error on mention link with Nokogiri v1.11.0+. [#26](https://github.com/bitjourney/mato/pull/26)

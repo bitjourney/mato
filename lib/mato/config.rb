@@ -42,7 +42,7 @@ module Mato
     # @return [Class<CommonMarker]
     attr_accessor :markdown_parser
 
-    # @return [Cass<Nokogiri::HTML::DocumentFragment>]
+    # @return [Cass<Nokogiri::HTML4::DocumentFragment>]
     attr_accessor :html_parser
 
     # @return [Class<Mato::Document>]
@@ -63,7 +63,7 @@ module Mato
       @html_filters = []
 
       @markdown_parser = CommonMarker
-      @html_parser = Nokogiri::HTML::DocumentFragment
+      @html_parser = Nokogiri::HTML4::DocumentFragment
 
       @document_factory = Document
 
