@@ -1,0 +1,42 @@
+name: ReviewDog
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+        ruby-version: '3.0'
+
+    - name: rubocop
+      uses: reviewdog/action-rubocop@v2
+      with:
+        rubocop_version: gemfile
+        rubocop_extensions: rubocop-performance:gemfile
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: github-pr-review
+        fail_on_error: true
+
+  detect-secrets:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.head_ref, 'dependabot') }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: detect-secrets
+        uses: reviewdog/action-detect-secrets@master
+        with:
+          reporter: github-pr-review
+          detect_secrets_flags: --all-files --force-use-all-plugins --word-list .github/workflows/detect-secrets-wordlist.txt
