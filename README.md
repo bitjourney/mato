@@ -1,4 +1,4 @@
-# Mato [![Build Status](https://travis-ci.org/bitjourney/mato.svg?branch=master)](https://travis-ci.org/bitjourney/mato) [![Gem Version](https://badge.fury.io/rb/mato.svg)](https://badge.fury.io/rb/mato)
+# Mato [![Gem Version](https://badge.fury.io/rb/mato.svg)](https://badge.fury.io/rb/mato)
 
 **Mato**, standing for **Ma**rkdown **To**oolkit,  is an extensible, pipeline-based markdown processing toolkit, inspired by [HTML::Pipeline](https://github.com/jch/html-pipeline).
 
@@ -189,4 +189,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/bitjou
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
