@@ -9,7 +9,7 @@ require 'minitest/power_assert'
 require 'active_support'
 require 'rr'
 
-class MyTest < MiniTest::Test
+class MyTest < Minitest::Test
   include Minitest::PowerAssert::Assertions
 
   def assert_html_eq(actual, expected)
