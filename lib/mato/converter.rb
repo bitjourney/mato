@@ -29,7 +29,7 @@ module Mato
     end
 
     def run
-      # @type [CommonMarker::Node]
+      # @type [Markly::Node]
       document = processor.parse_markdown(content)
 
       convert_headings!(document)
@@ -45,14 +45,14 @@ module Mato
     def convert_headings!(document)
       document.walk.select do |node|
         node.type == :text &&
-          node.sourcepos[:start_column] == 1 &&
+          node.source_position[:start_column] == 1 &&
           node.parent.type == :paragraph &&
           node.parent.parent.type == :document
       end.reverse_each do |node|
         replacement = node.string_content.gsub(/\A(#+)(?=\S)/, '\1 ')
 
         if node.string_content != replacement
-          pos = node.sourcepos
+          pos = node.source_position
           content_lines[pos[:start_line] - 1][(pos[:start_column] - 1)...pos[:end_column]] = replacement
         end
       end

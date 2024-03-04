@@ -3,14 +3,16 @@
 require_relative('./document')
 
 require 'nokogiri'
+require 'markly'
 
 module Mato
   class Config
     # https://github.com/gjtorikian/commonmarker#parse-options
-    DEFAULT_MARKDOWN_PARSE_OPTIONS = %i[
-      DEFAULT
-      VALIDATE_UTF8
-      FOOTNOTES
+    DEFAULT_MARKDOWN_PARSE_OPTIONS = [
+      Markly::DEFAULT,
+      Markly::VALIDATE_UTF8,
+      Markly::FOOTNOTES,
+      Markly::UNSAFE,
     ].freeze
 
     # https://github.com/gjtorikian/commonmarker#render-options
@@ -39,7 +41,7 @@ module Mato
     # @return [Array<Proc>]
     attr_accessor :html_filters
 
-    # @return [Class<CommonMarker]
+    # @return [Class<Markly]
     attr_accessor :markdown_parser
 
     # @return [Cass<Nokogiri::HTML4::DocumentFragment>]
@@ -48,13 +50,13 @@ module Mato
     # @return [Class<Mato::Document>]
     attr_accessor :document_factory
 
-    # @return [Array<Symbol>] CommonMarker's parse extensions
+    # @return [Array<Symbol>] Markly's parse extensions
     attr_accessor :markdown_extensions
 
-    # @return [Array<Symbol>] CommonMarker's pars options
+    # @return [Array<Class>] Markly's pars options
     attr_accessor :markdown_parse_options
 
-    # @return [Array<Symbol>] CommonMarker's HTML rendering options
+    # @return [Array<Symbol>] Commonmarker's HTML rendering options
     attr_accessor :markdown_render_options
 
     def initialize
@@ -62,7 +64,7 @@ module Mato
       @markdown_filters = []
       @html_filters = []
 
-      @markdown_parser = CommonMarker
+      @markdown_parser = Markly
       @html_parser = Nokogiri::HTML4::DocumentFragment
 
       @document_factory = Document

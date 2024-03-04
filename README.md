@@ -89,7 +89,7 @@ mato.process("Hello!").render_html # "<p>HELLO!</p>\n"
 
 ### Markdown Filters
 
-A markdown filter is a callable instance that takes a ``CommonMarker::Node`
+A markdown filter is a callable instance that takes a ``Markly::Node`
 and mutate it in the method. The return value is ignored.
 
 For example:
