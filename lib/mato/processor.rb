@@ -12,9 +12,6 @@ module Mato
 
     def initialize(config)
       @config = config
-      config.markdown_parse_options.each do |options|
-        @flags = @flags ? @flags | options : options
-      end
     end
 
     # @param [String] input
@@ -46,15 +43,15 @@ module Mato
     end
 
     # @param [String] text
-    # @return [Markly::Node]
+    # @return [Commonmarker::Node]
     def parse_markdown(text)
-      config.markdown_parser.parse(text, flags: @flags, extensions: config.markdown_extensions)
+      config.markdown_parser.parse(text, options: config.markdown_options)
     end
 
-    # @param [Markly::Node] markdown_node
+    # @param [Commonmarker::Node] markdown_node
     # @return [String]
     def render_to_html(markdown_node)
-      markdown_node.to_html(flags: @flags)
+      markdown_node.to_html(options: config.markdown_options)
     end
 
     # @param [String] html

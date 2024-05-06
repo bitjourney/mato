@@ -3,34 +3,24 @@
 require_relative('./document')
 
 require 'nokogiri'
-require 'markly'
 
 module Mato
   class Config
-    # https://github.com/gjtorikian/commonmarker#parse-options
-    DEFAULT_MARKDOWN_PARSE_OPTIONS = [
-      Markly::DEFAULT,
-      Markly::VALIDATE_UTF8,
-      Markly::FOOTNOTES,
-      Markly::UNSAFE,
-    ].freeze
-
-    # https://github.com/gjtorikian/commonmarker#render-options
-    DEFAULT_MARKDOWN_RENDER_OPTIONS = [
-      :DEFAULT,
-      :HARDBREAKS, # convert "\n" as <br/>
-      :TABLE_PREFER_STYLE_ATTRIBUTES,
-      :UNSAFE,
-      # :SOURCEPOS, // TODO: enable it after assertions are supported
-    ].freeze
-
-    # https://github.com/github/cmark/tree/master/extensions
-    DEFAULT_MARKDOWN_EXTENSIONS = %i[
-      table
-      strikethrough
-      autolink
-      tagfilter
-    ].freeze
+    DEFAULT_MARKDOWN_OPTIONS = {
+      render: {
+        hardbreaks: true,
+        unsafe: true,
+      },
+      extension: {
+        table: true,
+        strikethrough: true,
+        autolink: true,
+        tagfilter: true,
+        tasklist: false,
+        shortcodes: false,
+        footnotes: true,
+      },
+    }.freeze
 
     # @return [Array<Proc>]
     attr_accessor :text_filters
@@ -41,7 +31,7 @@ module Mato
     # @return [Array<Proc>]
     attr_accessor :html_filters
 
-    # @return [Class<Markly]
+    # @return [Class<Commonmarker]
     attr_accessor :markdown_parser
 
     # @return [Cass<Nokogiri::HTML4::DocumentFragment>]
@@ -50,28 +40,20 @@ module Mato
     # @return [Class<Mato::Document>]
     attr_accessor :document_factory
 
-    # @return [Array<Symbol>] Markly's parse extensions
-    attr_accessor :markdown_extensions
-
-    # @return [Array<Class>] Markly's pars options
-    attr_accessor :markdown_parse_options
-
-    # @return [Array<Symbol>] Commonmarker's HTML rendering options
-    attr_accessor :markdown_render_options
+    # @return [Hash] Commonmarker's options
+    attr_accessor :markdown_options
 
     def initialize
       @text_filters = []
       @markdown_filters = []
       @html_filters = []
 
-      @markdown_parser = Markly
+      @markdown_parser = Commonmarker
       @html_parser = Nokogiri::HTML4::DocumentFragment
 
       @document_factory = Document
 
-      @markdown_extensions = DEFAULT_MARKDOWN_EXTENSIONS
-      @markdown_parse_options = DEFAULT_MARKDOWN_PARSE_OPTIONS
-      @markdown_render_options = DEFAULT_MARKDOWN_RENDER_OPTIONS
+      @markdown_options = DEFAULT_MARKDOWN_OPTIONS
     end
 
     # @param [Proc] block

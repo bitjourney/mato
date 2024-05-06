@@ -29,7 +29,7 @@ module Mato
     end
 
     def run
-      # @type [Markly::Node]
+      # @type [Commonmarker::Node]
       document = processor.parse_markdown(content)
 
       convert_headings!(document)
