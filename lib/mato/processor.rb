@@ -43,15 +43,15 @@ module Mato
     end
 
     # @param [String] text
-    # @return [CommonMarker::Node]
+    # @return [Commonmarker::Node]
     def parse_markdown(text)
-      config.markdown_parser.render_doc(text, config.markdown_parse_options, config.markdown_extensions)
+      config.markdown_parser.parse(text, options: config.markdown_options)
     end
 
-    # @param [CommonMarker::Node] markdown_node
+    # @param [Commonmarker::Node] markdown_node
     # @return [String]
     def render_to_html(markdown_node)
-      markdown_node.to_html(config.markdown_render_options)
+      markdown_node.to_html(options: config.markdown_options)
     end
 
     # @param [String] html
