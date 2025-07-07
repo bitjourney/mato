@@ -1,5 +1,11 @@
 # The revision history of Mato
 
+## v2.6.0 - 2024/05/07
+
+https://github.com/bitjourney/mato/compare/v2.5.0...v2.6.0
+
+* Bump up commonmarker to 2.3
+
 ## v2.5.0 - 2024/05/07
 
 https://github.com/bitjourney/mato/compare/v2.4.0...v2.5.0
