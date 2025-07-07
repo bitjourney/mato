@@ -56,7 +56,8 @@ module Mato
       # @return [Nokogiri::XML::Element] a new <div/> wrapping the given code block
       def highlight(pre)
         code = pre.at('code')
-        metadata = parse_label(code['class'])
+        lang_attr = pre['lang'] || code['class']
+        metadata = parse_label(lang_attr)
         language = metadata[:language]&.sub(/^language-/, '')
         filename = metadata[:filename]
         source = code.inner_text

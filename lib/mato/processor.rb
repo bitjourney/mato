@@ -51,7 +51,7 @@ module Mato
     # @param [Commonmarker::Node] markdown_node
     # @return [String]
     def render_to_html(markdown_node)
-      markdown_node.to_html(options: config.markdown_options)
+      markdown_node.to_html(options: config.markdown_options, plugins: config.markdown_plugins)
     end
 
     # @param [String] html
