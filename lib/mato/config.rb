@@ -10,6 +10,7 @@ module Mato
       render: {
         hardbreaks: true,
         unsafe: true,
+        escaped_char_spans: false,
       },
       extension: {
         table: true,
@@ -43,6 +44,9 @@ module Mato
     # @return [Hash] Commonmarker's options
     attr_accessor :markdown_options
 
+    # @return [Hash] Commonmarker's plugins
+    attr_accessor :markdown_plugins
+
     def initialize
       @text_filters = []
       @markdown_filters = []
@@ -54,6 +58,7 @@ module Mato
       @document_factory = Document
 
       @markdown_options = DEFAULT_MARKDOWN_OPTIONS
+      @markdown_plugins = { syntax_highlighter: nil }
     end
 
     # @param [Proc] block
